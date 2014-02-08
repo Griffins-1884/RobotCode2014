@@ -76,6 +76,7 @@ public class DriveTrain extends Subsystem {
         private double leftSpeed;
         private double rightSpeed;
         private long threadPollInterval;
+        private boolean isRunning;
         private Thread checkup;
 
         /**
@@ -95,6 +96,7 @@ public class DriveTrain extends Subsystem {
             this.leftSpeed = leftSpeed;
             this.rightSpeed = rightSpeed;
             this.threadPollInterval = threadPollInterval;
+            this.isRunning = false;
             checkup = new Thread(this);
         }
 
@@ -163,6 +165,7 @@ public class DriveTrain extends Subsystem {
         }
 
         public void run() {
+            isRunning = true;
             startTrack();
             startDrive();
             boolean hasDrivenDistance = false;
@@ -178,6 +181,7 @@ public class DriveTrain extends Subsystem {
                 }
             }
             endDrive();
+            isRunning = false;
         }
     }
 

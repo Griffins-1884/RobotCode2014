@@ -8,8 +8,10 @@
             <file>file:/C:/Users/Jack/Documents/GitHub/RobotCode2014/Robot/src/org/usfirst/frc1884/Robot/commands/RaiseBlocker.java</file>
             <file>file:/C:/Users/Jack/Documents/GitHub/RobotCode2014/Robot/src/org/usfirst/frc1884/Robot/commands/RetractFeeder.java</file>
             <file>file:/C:/Users/Jack/Documents/GitHub/RobotCode2014/Robot/src/org/usfirst/frc1884/Robot/commands/SwitchToGearHigh.java</file>
+            <file>file:/C:/Users/Jack/Documents/GitHub/RobotCode2014/Robot/src/org/usfirst/frc1884/Robot/commands/AutoAllianceZoneEntry.java</file>
             <file>file:/C:/Users/Jack/Documents/GitHub/RobotCode2014/Robot/src/org/usfirst/frc1884/Robot/commands/LowerBlocker.java</file>
             <file>file:/C:/Users/Jack/Documents/GitHub/RobotCode2014/Robot/src/org/usfirst/frc1884/Robot/commands/HighBallEjection.java</file>
+            <file>file:/C:/Users/Jack/Documents/GitHub/RobotCode2014/Robot/src/org/usfirst/frc1884/Robot/subsystems/DriveTrain.java</file>
             <file>file:/C:/Users/Jack/Documents/GitHub/RobotCode2014/Robot/src/org/usfirst/frc1884/Robot/commands/SwitchToGearLow.java</file>
             <file>file:/C:/Users/Jack/Documents/GitHub/RobotCode2014/Robot/src/org/usfirst/frc1884/Robot/commands/CompressAir.java</file>
         </group>

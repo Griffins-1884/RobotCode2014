@@ -31,21 +31,12 @@ public class  AutoAllianceZoneEntry extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        timeSinceStarted = System.currentTimeMillis();
+        
     }
-
-    private long timeSinceStarted;
     
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        if(System.currentTimeMillis()-timeSinceStarted >= 2000) {
-            Robot.driveTrain.setLeftValues(0);
-            Robot.driveTrain.setRightValues(0);
-        } else {
-        Robot.driveTrain.setToHighGear();
-        Robot.driveTrain.setLeftValues(1);
-        Robot.driveTrain.setRightValues(1);
-        }
+        
     }
 
     // Make this return true when this Command no longer needs to run execute()
