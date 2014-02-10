@@ -70,6 +70,62 @@ public class DriveTrain extends Subsystem {
         isHighGear = false;
     }
 
+    /**
+     * This is the constructor for the SmartDrive class. This class allows the
+     * drivetrain to move a specified amount.
+     *
+     * @param distance The distance in inches to move.
+     * @param rightSpeed The speed to give the Talons controlling the right side
+     * of the robot. This should be between -1.0 and 1.0.
+     * @param leftSpeed The speed to give the Talons controlling the left side
+     * of the robot. Should be between -1.0 and 1.0.
+     * @param threadPollInterval The time between checking the distance
+     * traveled.
+     */
+    public SmartDrive getSmartDrive(double distance, double rightSpeed, double leftSpeed, long threadPollInterval) {
+        return new SmartDrive(distance, rightSpeed, leftSpeed, threadPollInterval);
+    }
+
+    /**
+     * This is the constructor for the SmartDrive class. This class allows the
+     * drivetrain to move a specified amount.
+     *
+     * @param distance The distance in inches to move.
+     * @param rightSpeed The speed to give the Talons controlling the right side
+     * of the robot. This should be between -1.0 and 1.0.
+     * @param leftSpeed The speed to give the Talons controlling the left side
+     * of the robot. Should be between -1.0 and 1.0.
+     */
+    public SmartDrive SmartDrive(double distance, double rightSpeed, double leftSpeed) {
+        return getSmartDrive(distance, rightSpeed, leftSpeed, THREAD_POLL_INTERVAL);
+    }
+
+    /**
+     * This is the constructor for the SmartDrive class. This class allows the
+     * drivetrain to move a specified amount.
+     *
+     * @param distance The distance in inches to move.
+     * @param speed The speed to give the Talons controlling the right side of
+     * the robot. This should be between -1.0 and 1.0.
+     * @param threadPollInterval The time between checking the distance
+     * traveled.
+     */
+    public SmartDrive getSmartDrive(double distance, double speed, long threadPollInterval) {
+        return getSmartDrive(distance, speed, speed, THREAD_POLL_INTERVAL);
+    }
+
+    /**
+     * This is the constructor for the SmartDrive class. This class allows the
+     * drivetrain to move a specified amount.
+     *
+     * @param distance The distance in inches to move.
+     * @param speed The speed to give the Talons controlling the robot. Should
+     * be between -1.0 and 1.0.
+     */
+    public SmartDrive getSmartDrive(double distance, double speed) {
+        return getSmartDrive(distance, speed, speed, THREAD_POLL_INTERVAL);
+    }
+
     public class SmartDrive implements Runnable {
 
         private double distance;
@@ -98,46 +154,6 @@ public class DriveTrain extends Subsystem {
             this.threadPollInterval = threadPollInterval;
             this.isRunning = false;
             checkup = new Thread(this);
-        }
-
-        /**
-         * This is the constructor for the SmartDrive class. This class allows
-         * the drivetrain to move a specified amount.
-         *
-         * @param distance The distance in inches to move.
-         * @param rightSpeed The speed to give the Talons controlling the right
-         * side of the robot. This should be between -1.0 and 1.0.
-         * @param leftSpeed The speed to give the Talons controlling the left
-         * side of the robot. Should be between -1.0 and 1.0.
-         */
-        public SmartDrive(double distance, double rightSpeed, double leftSpeed) {
-            this(distance, rightSpeed, leftSpeed, THREAD_POLL_INTERVAL);
-        }
-
-        /**
-         * This is the constructor for the SmartDrive class. This class allows
-         * the drivetrain to move a specified amount.
-         *
-         * @param distance The distance in inches to move.
-         * @param speed The speed to give the Talons controlling the right side
-         * of the robot. This should be between -1.0 and 1.0.
-         * @param threadPollInterval The time between checking the distance
-         * traveled.
-         */
-        public SmartDrive(double distance, double speed, long threadPollInterval) {
-            this(distance, speed, speed, THREAD_POLL_INTERVAL);
-        }
-
-        /**
-         * This is the constructor for the SmartDrive class. This class allows
-         * the drivetrain to move a specified amount.
-         *
-         * @param distance The distance in inches to move.
-         * @param speed The speed to give the Talons controlling the robot.
-         * Should be between -1.0 and 1.0.
-         */
-        public SmartDrive(double distance, double speed) {
-            this(distance, speed, speed, THREAD_POLL_INTERVAL);
         }
 
         public void startTrack() {
