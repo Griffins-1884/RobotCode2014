@@ -13,6 +13,7 @@ package org.usfirst.frc1884.Robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc1884.Robot.Robot;
+import org.usfirst.frc1884.Robot.subsystems.Shooter;
 
 /**
  *
@@ -35,6 +36,7 @@ public class  HighBallEjection extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        Robot.shooter.setSetpoint(Shooter.FIRE);
     }
 
     // Make this return true when this Command no longer needs to run execute()
