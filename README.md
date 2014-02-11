@@ -44,10 +44,9 @@ Digital Sidecar Digital Slots
 Solenoid Breakout Slots
 1 - Gear Switch Solenoid Forward Channel
 2 - Gear Switch Solenoid Reverse Channel
-3 - Ball Release Piston Solenoid Forward Channel
-4 - Ball Release Piston Solenoid Reverse Channel
-5 - Intake Piston Solenoid Forward Channel
-6 - Intake Piston Solenoid Reverse Channel
+3 - Ball Release Piston Solenoid Channel
+4 - Intake Piston Solenoid Forward Channel
+5 - Intake Piston Solenoid Reverse Channel
 
 Spike Slots
 1 - Compressor Spike Channel
