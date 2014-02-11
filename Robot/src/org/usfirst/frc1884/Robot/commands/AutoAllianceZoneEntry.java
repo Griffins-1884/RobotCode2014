@@ -14,15 +14,11 @@ package org.usfirst.frc1884.Robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc1884.Robot.Robot;
 import org.usfirst.frc1884.Robot.RobotMap;
-import org.usfirst.frc1884.Robot.subsystems.SmartDriveTrain;
 
 /**
  *
  */
-public class  AutoAllianceZoneEntry extends Command implements SmartDriveTrain.DriveListener {
-    
-    private SmartDriveTrain sdt;
-    private boolean isDriveComplete;
+public class  AutoAllianceZoneEntry extends Command {
 
     public AutoAllianceZoneEntry() {
         // Use requires() here to declare subsystem dependencies
@@ -35,24 +31,17 @@ public class  AutoAllianceZoneEntry extends Command implements SmartDriveTrain.D
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        isDriveComplete = false;
-        sdt = new SmartDriveTrain(this, 48, 1);
-        sdt.startTrack();
-        sdt.startDrive();
-    }
-    
-    public void onDriveCompleted() {
-        isDriveComplete = true;
+        
     }
     
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        
+        Robot.driveTrain.getSmartDrive(48, 1);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return isDriveComplete;
+        return false;
     }
 
     // Called once after isFinished returns true

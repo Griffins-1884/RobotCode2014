@@ -34,8 +34,6 @@ public class DriveTrain extends Subsystem {
     public static final long THREAD_POLL_INTERVAL = 250;
     private boolean isHighGear;
 
-    
-    
     /**
      * This sets the speed of the Talons on the left side of the motor.
      *
@@ -70,6 +68,137 @@ public class DriveTrain extends Subsystem {
     public void setToLowGear() {
         gearSwitchPiston.set(DoubleSolenoid.Value.kReverse);
         isHighGear = false;
+    }
+
+    /**
+     * This is the constructor for the SmartDrive class. This class allows the
+     * drivetrain to move a specified amount.
+     *
+     * @param distance The distance in inches to move.
+     * @param rightSpeed The speed to give the Talons controlling the right side
+     * of the robot. This should be between -1.0 and 1.0.
+     * @param leftSpeed The speed to give the Talons controlling the left side
+     * of the robot. Should be between -1.0 and 1.0.
+     * @param threadPollInterval The time between checking the distance
+     * traveled.
+     */
+    public SmartDrive getSmartDrive(double distance, double rightSpeed, double leftSpeed, long threadPollInterval) {
+        return new SmartDrive(distance, rightSpeed, leftSpeed, threadPollInterval);
+    }
+
+    /**
+     * This is the constructor for the SmartDrive class. This class allows the
+     * drivetrain to move a specified amount.
+     *
+     * @param distance The distance in inches to move.
+     * @param rightSpeed The speed to give the Talons controlling the right side
+     * of the robot. This should be between -1.0 and 1.0.
+     * @param leftSpeed The speed to give the Talons controlling the left side
+     * of the robot. Should be between -1.0 and 1.0.
+     */
+    public SmartDrive SmartDrive(double distance, double rightSpeed, double leftSpeed) {
+        return getSmartDrive(distance, rightSpeed, leftSpeed, THREAD_POLL_INTERVAL);
+    }
+
+    /**
+     * This is the constructor for the SmartDrive class. This class allows the
+     * drivetrain to move a specified amount.
+     *
+     * @param distance The distance in inches to move.
+     * @param speed The speed to give the Talons controlling the right side of
+     * the robot. This should be between -1.0 and 1.0.
+     * @param threadPollInterval The time between checking the distance
+     * traveled.
+     */
+    public SmartDrive getSmartDrive(double distance, double speed, long threadPollInterval) {
+        return getSmartDrive(distance, speed, speed, THREAD_POLL_INTERVAL);
+    }
+
+    /**
+     * This is the constructor for the SmartDrive class. This class allows the
+     * drivetrain to move a specified amount.
+     *
+     * @param distance The distance in inches to move.
+     * @param speed The speed to give the Talons controlling the robot. Should
+     * be between -1.0 and 1.0.
+     */
+    public SmartDrive getSmartDrive(double distance, double speed) {
+        return getSmartDrive(distance, speed, speed, THREAD_POLL_INTERVAL);
+    }
+
+    public class SmartDrive implements Runnable {
+
+        private double distance;
+        private double leftSpeed;
+        private double rightSpeed;
+        private long threadPollInterval;
+        private boolean isRunning;
+        private Thread checkup;
+
+        /**
+         * This is the constructor for the SmartDrive class. This class allows
+         * the drivetrain to move a specified amount.
+         *
+         * @param distance The distance in inches to move.
+         * @param rightSpeed The speed to give the Talons controlling the right
+         * side of the robot. This should be between -1.0 and 1.0.
+         * @param leftSpeed The speed to give the Talons controlling the left
+         * side of the robot. Should be between -1.0 and 1.0.
+         * @param threadPollInterval The time between checking the distance
+         * traveled.
+         */
+        public SmartDrive(double distance, double rightSpeed, double leftSpeed, long threadPollInterval) {
+            this.distance = distance;
+            this.leftSpeed = leftSpeed;
+            this.rightSpeed = rightSpeed;
+            this.threadPollInterval = threadPollInterval;
+            this.isRunning = false;
+            checkup = new Thread(this);
+        }
+
+        public void startTrack() {
+            leftEncoder.reset();
+            rightEncoder.reset();
+        }
+
+        public double getDistanceDriven() {
+            return ((leftEncoder.getDistance() + rightEncoder.getDistance()) / 2.0);
+
+        }
+
+        public void startDrive() {
+            setLeftValues(leftSpeed);
+            setRightValues(rightSpeed);
+        }
+
+        public void endDrive() {
+            setLeftValues(0);
+            setRightValues(0);
+        }
+
+        public void driveDistance() {
+            checkup.start();
+        }
+
+        public void run() {
+            isRunning = true;
+            startTrack();
+            startDrive();
+            boolean hasDrivenDistance = false;
+            while (!hasDrivenDistance) {
+                if (getDistanceDriven() >= distance) {
+                    hasDrivenDistance = true;
+                } else {
+                    try {
+                        Thread.sleep(threadPollInterval);
+                    } catch (InterruptedException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            }
+            endDrive();
+            isRunning = false;
+        }
     }
 
     public void initDefaultCommand() {
