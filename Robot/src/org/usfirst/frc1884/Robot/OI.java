@@ -79,7 +79,6 @@ public class OI {
         
         whenHeld = new JoystickButton(pilotLeft, 1);
         whenHeld.whileHeld(new RetractFeeder());
-
 	    
         // SmartDashboard Buttons
         SmartDashboard.putData("AutoScoreLow", new AutoScoreLow());

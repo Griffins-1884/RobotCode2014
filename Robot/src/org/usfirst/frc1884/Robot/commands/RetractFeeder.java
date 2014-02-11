@@ -18,6 +18,8 @@ import org.usfirst.frc1884.Robot.Robot;
  *
  */
 public class  RetractFeeder extends Command {
+    
+    private boolean isRetracted;
 
     public RetractFeeder() {
         // Use requires() here to declare subsystem dependencies
@@ -30,16 +32,18 @@ public class  RetractFeeder extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        isRetracted = false;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         Robot.feeder.retractFeeder();
+        isRetracted = true;
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return isRetracted;
     }
 
     // Called once after isFinished returns true
