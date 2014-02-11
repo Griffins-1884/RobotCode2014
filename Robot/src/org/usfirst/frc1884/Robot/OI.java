@@ -75,6 +75,8 @@ public class OI {
         
         //Get and Send Button Values
         
+        //Amnahahahahah Sucks
+        
         //CoPilot Values
         
         JoystickButton compressAir = new JoystickButton(coPilot, 1);
