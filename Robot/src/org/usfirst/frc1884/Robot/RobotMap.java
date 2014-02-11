@@ -34,7 +34,7 @@ public class RobotMap {
     public static DoubleSolenoid driveTrainGearSwitchPiston;
     public static Encoder shooterShooterEncoder;
     public static SpeedController shooterShooterMotor;
-    public static DoubleSolenoid shooterBallReleasePiston;
+    public static Solenoid shooterBallReleasePiston;
     public static SpeedController feederIntakeMotor;
     public static DoubleSolenoid feederIntakeMovementPiston;
     public static SpeedController blockerBlockerMovementMotor;
@@ -77,13 +77,13 @@ public class RobotMap {
         shooterShooterMotor = new Talon(1, 5);
 	LiveWindow.addActuator("Shooter", "ShooterMotor", (Talon) shooterShooterMotor);
         
-        shooterBallReleasePiston = new DoubleSolenoid(1, 3, 4);      
+        shooterBallReleasePiston = new Solenoid(1, 3);
 	
         
         feederIntakeMotor = new Talon(1, 6);
 	LiveWindow.addActuator("Feeder", "IntakeMotor", (Talon) feederIntakeMotor);
         
-        feederIntakeMovementPiston = new DoubleSolenoid(1, 5, 6);      
+        feederIntakeMovementPiston = new DoubleSolenoid(1, 4, 5);      
 	
         
         blockerBlockerMovementMotor = new Talon(1, 7);
