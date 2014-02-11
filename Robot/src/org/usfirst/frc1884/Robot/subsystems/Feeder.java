@@ -67,6 +67,13 @@ public class Feeder extends Subsystem {
     public void rollOut() {
         intakeMotor.set(-speed);
     }
+    
+    /**
+     * This stops the Feeder roll.
+     */
+    public void noRoll() {
+        intakeMotor.set(0);
+    }
 
     /**
      * Set the intake speed of the motor. This should be between 0 and 1.
