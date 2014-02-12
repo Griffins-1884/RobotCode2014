@@ -71,8 +71,8 @@ public class RobotMap {
         
         shooterShooterEncoder = new Encoder(1, 5, 1, 6, false, EncodingType.k4X);
 	LiveWindow.addSensor("Shooter", "ShooterEncoder", shooterShooterEncoder);
-        shooterShooterEncoder.setDistancePerPulse(1.0);
-        shooterShooterEncoder.setPIDSourceParameter(PIDSourceParameter.kRate);
+        shooterShooterEncoder.setDistancePerPulse(1);
+        shooterShooterEncoder.setPIDSourceParameter(PIDSourceParameter.kAngle);
         shooterShooterEncoder.start();
         shooterShooterMotor = new Talon(1, 5);
 	LiveWindow.addActuator("Shooter", "ShooterMotor", (Talon) shooterShooterMotor);

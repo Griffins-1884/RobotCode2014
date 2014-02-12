@@ -77,9 +77,6 @@ public class OI {
         
         //CoPilot Values
         
-        JoystickButton compressAir = new JoystickButton(coPilot, 1);
-        compressAir.whenReleased(new CompressAir());
-        
         JoystickButton retractFeeder = new JoystickButton(coPilot, 2);
         retractFeeder.whenReleased(new RetractFeeder());
         
@@ -131,8 +128,6 @@ public class OI {
         SmartDashboard.putData("SwitchToGearHigh", new SwitchToGearHigh());
 
         SmartDashboard.putData("SwitchToGearLow", new SwitchToGearLow());
-
-        SmartDashboard.putData("CompressAir", new CompressAir());
 
         SmartDashboard.putData("RaiseBlocker", new RaiseBlocker());
 

@@ -27,11 +27,14 @@ public class Feeder extends Subsystem {
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
+    private PistonClass pistonClass;
     private double speed;
     private boolean isExtended;
-    
+    private static long PISTON_MOVE_TIME = 1500;
+
     /**
      * This returns true if the arm is extended, false if otherwise.
+     *
      * @return True if the arm is extended. False if the arm is retracted.
      */
     public boolean isArmExtended() {
@@ -42,16 +45,14 @@ public class Feeder extends Subsystem {
      * This extends the Feeder arm.
      */
     public void extendFeeder() {
-        intakeMovementPiston.set(DoubleSolenoid.Value.kForward);
-        this.isExtended = true;
+        pistonClass.extendFeeder();
     }
 
     /**
      * This retracts the Feeder arm.
      */
     public void retractFeeder() {
-        intakeMovementPiston.set(DoubleSolenoid.Value.kReverse);
-        this.isExtended = false;
+        pistonClass.retractFeeder();
     }
 
     /**
@@ -67,7 +68,7 @@ public class Feeder extends Subsystem {
     public void rollOut() {
         intakeMotor.set(-speed);
     }
-    
+
     /**
      * This stops the Feeder roll.
      */
@@ -75,8 +76,62 @@ public class Feeder extends Subsystem {
         intakeMotor.set(0);
     }
 
+    private class PistonClass implements Runnable {
+
+        private boolean isRunning;
+        private Thread thisThread;
+        private byte RUN_TYPE_IN = 0;
+        private byte RUN_TYPE_OUT = 1;
+        private byte runType;
+
+        private PistonClass() {
+            isRunning = false;
+            thisThread = new Thread(this);
+        }
+
+        void extendFeeder() {
+            runType = RUN_TYPE_IN;
+            runThread();
+        }
+
+        void retractFeeder() {
+            runType = RUN_TYPE_OUT;
+            runThread();
+        }
+
+        private void runThread() {
+            if (!isRunning) {
+                thisThread.start();
+            }
+        }
+
+        public void run() {
+            isRunning = true;
+            if (runType == RUN_TYPE_OUT) {
+                intakeMovementPiston.set(DoubleSolenoid.Value.kForward);
+                try {
+                    Thread.sleep(PISTON_MOVE_TIME);
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
+                }
+                isExtended = true;
+            } else if (runType == RUN_TYPE_IN) {
+                intakeMovementPiston.set(DoubleSolenoid.Value.kReverse);
+                try {
+                    Thread.sleep(PISTON_MOVE_TIME);
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
+                }
+                isExtended = false;
+            }
+            isRunning = false;
+        }
+
+    }
+
     /**
      * Set the intake speed of the motor. This should be between 0 and 1.
+     *
      * @param speed The intake speed to set the motor to.
      */
     public void setIntakeSpeed(double speed) {
@@ -91,5 +146,6 @@ public class Feeder extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
         this.speed = 1;
         this.isExtended = false;
+        pistonClass = new PistonClass();
     }
 }
