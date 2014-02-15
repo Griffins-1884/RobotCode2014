@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.usfirst.frc1884.Robot.subsystems;
+package org.usfirst.frc0.Robot.subsystems;
 
-import org.usfirst.frc1884.Robot.Robot;
+import org.usfirst.frc0.Robot.Robot;
 
 /**
  *

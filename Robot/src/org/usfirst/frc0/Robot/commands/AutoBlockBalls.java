@@ -9,15 +9,15 @@
 // it from being updated in the future.
 
 
-package org.usfirst.frc1884.Robot.commands;
+package org.usfirst.frc0.Robot.commands;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class AutoPickupBalls extends CommandGroup {
+public class AutoBlockBalls extends CommandGroup {
     
-    public  AutoPickupBalls() {
+    public  AutoBlockBalls() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

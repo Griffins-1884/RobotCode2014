@@ -9,19 +9,19 @@
 // it from being updated in the future.
 
 
-package org.usfirst.frc1884.Robot.commands;
+package org.usfirst.frc0.Robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import org.usfirst.frc1884.Robot.Robot;
+import org.usfirst.frc0.Robot.Robot;
 
 /**
  *
  */
-public class  SwitchToGearHigh extends Command {
-
-    private boolean isSwitched;
+public class  SwitchToGearLow extends Command {
     
-    public SwitchToGearHigh() {
+    private boolean isSwitched;
+
+    public SwitchToGearLow() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
 	
@@ -37,7 +37,7 @@ public class  SwitchToGearHigh extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        Robot.driveTrain.setToHighGear();
+        Robot.driveTrain.setToLowGear();
         isSwitched = true;
     }
 

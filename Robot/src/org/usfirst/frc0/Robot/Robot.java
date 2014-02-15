@@ -9,14 +9,18 @@
 // it from being updated in the future.
 
 
-package org.usfirst.frc1884.Robot;
+package org.usfirst.frc0.Robot;
 
+import org.usfirst.frc0.Robot.subsystems.Feeder;
+import org.usfirst.frc0.Robot.subsystems.Shooter;
+import org.usfirst.frc0.Robot.subsystems.DriveTrain;
+import org.usfirst.frc0.Robot.subsystems.Mainetenance;
+import org.usfirst.frc0.Robot.subsystems.Blocker;
+import org.usfirst.frc0.Robot.subsystems.Camera;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import org.usfirst.frc1884.Robot.commands.*;
-import org.usfirst.frc1884.Robot.subsystems.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the

@@ -9,19 +9,19 @@
 // it from being updated in the future.
 
 
-package org.usfirst.frc1884.Robot.commands;
+package org.usfirst.frc0.Robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import org.usfirst.frc1884.Robot.Robot;
+import org.usfirst.frc0.Robot.Robot;
 
 /**
  *
  */
-public class  RetractFeeder extends Command {
+public class  ExtendFeeder extends Command {
     
     private boolean isRetracted;
 
-    public RetractFeeder() {
+    public ExtendFeeder() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
 	

@@ -9,7 +9,7 @@
 // it from being updated in the future.
 
 
-package org.usfirst.frc1884.Robot;
+package org.usfirst.frc0.Robot;
     
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType; import edu.wpi.first.wpilibj.PIDSource.PIDSourceParameter;
@@ -73,7 +73,7 @@ public class RobotMap {
         shooterShooterEncoder = new Encoder(1, 5, 1, 6, false, EncodingType.k4X);
 	LiveWindow.addSensor("Shooter", "ShooterEncoder", shooterShooterEncoder);
         shooterShooterEncoder.setDistancePerPulse(1);
-        shooterShooterEncoder.setPIDSourceParameter(PIDSourceParameter.kAngle);
+        shooterShooterEncoder.setPIDSourceParameter(PIDSourceParameter.kRate);
         shooterShooterEncoder.start();
         shooterShooterMotor = new Talon(1, 5);
 	LiveWindow.addActuator("Shooter", "ShooterMotor", (Talon) shooterShooterMotor);
