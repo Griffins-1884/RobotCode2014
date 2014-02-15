@@ -36,6 +36,7 @@ public class  LowerBlocker extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        Robot.blocker.retractPiston();
         Robot.blocker.setSetpoint(Blocker.RETRACTED);
     }
 
