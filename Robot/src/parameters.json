@@ -1,10 +1,17 @@
 [
     {
-        "name": "foo",
-        "value": 2.0
+        "type": "double",
+        "name": "Shooter - P",
+        "value": 1.0
     },
     {
-        "name": "bar",
-        "value": 9000
+        "type": "double",
+        "name": "Shooter - I",
+        "value": 0.0
+    },
+    {
+        "type": "double",
+        "name": "Shooter - D",
+        "value": 0.0
     }
 ]

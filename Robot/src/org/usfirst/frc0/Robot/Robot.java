@@ -111,12 +111,13 @@ public class Robot extends IterativeRobot {
     }
     
     public void parameterRefresh() {
-        Parameter.readFile();
-        Robot.driveTrain.parameterRefresh();
-        Robot.shooter.parameterRefresh();
-        Robot.feeder.parameterRefresh();
-        Robot.blocker.parameterRefresh();
-        Robot.camera.parameterRefresh();
-        Robot.maintenance.parameterRefresh();
+        if(Parameter.readFile()) {
+            Robot.driveTrain.parameterRefresh();
+            Robot.shooter.parameterRefresh();
+            Robot.feeder.parameterRefresh();
+            Robot.blocker.parameterRefresh();
+            Robot.camera.parameterRefresh();
+            Robot.maintenance.parameterRefresh();
+        }
     }
 }
