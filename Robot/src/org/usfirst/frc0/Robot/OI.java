@@ -22,7 +22,6 @@ import org.usfirst.frc0.Robot.commands.SwitchToGearHigh;
 import org.usfirst.frc0.Robot.commands.HighBallEjection;
 import org.usfirst.frc0.Robot.commands.AutoPickupBalls;
 import org.usfirst.frc0.Robot.commands.EndFeeding;
-import org.usfirst.frc0.Robot.commands.LowBallEjection;
 import org.usfirst.frc0.Robot.commands.StartFeeding;
 import org.usfirst.frc0.Robot.commands.SwitchToGearLow;
 import org.usfirst.frc0.Robot.commands.AutoAllianceZoneEntry;
@@ -186,8 +185,6 @@ public class OI {
         SmartDashboard.putData("RaiseBlocker", new RaiseBlocker());
 
         SmartDashboard.putData("LowerBlocker", new LowerBlocker());
-
-        SmartDashboard.putData("LowBallEjection", new LowBallEjection());
 
         SmartDashboard.putData("HighBallEjection", new HighBallEjection());
 
