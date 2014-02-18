@@ -42,6 +42,9 @@ public class  HighBallEjection extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        
+        Robot.shooter.printEncoder();
+        
         if(!Robot.feeder.isArmExtended()) {
             Robot.feeder.extendFeeder();
         } else {
@@ -67,5 +70,9 @@ public class  HighBallEjection extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+            if(!wasPreviouslyExtended) {
+            Robot.feeder.retractFeeder();
+        }
+        Robot.shooter.setSetpoint(Shooter.STARTING_POSITION);
     }
 }

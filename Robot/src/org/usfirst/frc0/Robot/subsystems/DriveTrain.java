@@ -13,6 +13,7 @@ import org.usfirst.frc0.Robot.RobotMap;
 import edu.wpi.first.wpilibj.*;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import org.usfirst.frc0.Robot.commands.XBoxDrive;
 
 /**
  *
@@ -34,6 +35,11 @@ public class DriveTrain extends Subsystem {
     public static final long THREAD_POLL_INTERVAL = 250;
     private boolean isHighGear;
 
+    public DriveTrain() {
+        leftEncoder.setDistancePerPulse(0.5);
+        rightEncoder.setDistancePerPulse(0.5);
+        isHighGear = true;
+    }
     
     
     /**
@@ -78,8 +84,7 @@ public class DriveTrain extends Subsystem {
 
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-        leftEncoder.setDistancePerPulse(0.5);
-        rightEncoder.setDistancePerPulse(0.5);
-        isHighGear = true;
+        System.out.println("DriveTrain: initDefaultCommand performed");
+        setDefaultCommand(new XBoxDrive());
     }
 }
