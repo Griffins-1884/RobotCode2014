@@ -1,16 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.usfirst.frc0.Robot.subsystems;
 
 import org.usfirst.frc0.Robot.Robot;
 
-/**
- *
- * @author Jack
- */
 public class SmartDriveTrain extends DriveTrain implements Runnable {
 
     private double distance;
@@ -26,7 +17,8 @@ public class SmartDriveTrain extends DriveTrain implements Runnable {
      * This is the constructor for the SmartDrive class. This class allows the
      * drivetrain to move a specified amount.
      *
-     * @param odc The OnDriveCompleted interface associated with the SmartDriveTrain.
+     * @param odc The OnDriveCompleted interface associated with the
+     * SmartDriveTrain.
      * @param distance The distance in inches to move.
      * @param rightSpeed The speed to give the Talons controlling the right side
      * of the robot. This should be between -1.0 and 1.0.
@@ -62,7 +54,7 @@ public class SmartDriveTrain extends DriveTrain implements Runnable {
     public SmartDriveTrain(DriveListener dl, double distance, double speed) {
         this(dl, distance, speed, speed, THREAD_POLL_INTERVAL);
     }
-    
+
     /**
      * This is the constructor for the SmartDrive class. This class allows the
      * drivetrain to move a specified amount.
@@ -108,8 +100,9 @@ public class SmartDriveTrain extends DriveTrain implements Runnable {
     public void driveDistance() {
         checkup.start();
     }
-    
+
     public interface DriveListener {
+
         public void onDriveCompleted();
     }
 
