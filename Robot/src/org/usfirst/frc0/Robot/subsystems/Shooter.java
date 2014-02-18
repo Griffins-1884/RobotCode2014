@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.PIDSource.PIDSourceParameter;
 
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import org.usfirst.frc0.util.DoubleParameter;
 import org.usfirst.frc0.util.Parameter;
 
 /**
@@ -30,9 +31,9 @@ public class Shooter extends PIDSubsystem {
 
     public static final double STARTING_POSITION = 0;
     public static final double FIRE = 1d/360d;
-    private Parameter P = Parameter.getParameter("Shooter - P"),
-                      I = Parameter.getParameter("Shooter - I"),
-                      D = Parameter.getParameter("Shooter - D");
+    private DoubleParameter P = DoubleParameter.get("Shooter - P"),
+                            I = DoubleParameter.get("Shooter - I"),
+                            D = DoubleParameter.get("Shooter - D");
 
     // Initialize your subsystem here
     public Shooter() {

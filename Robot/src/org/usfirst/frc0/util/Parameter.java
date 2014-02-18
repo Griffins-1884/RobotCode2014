@@ -17,39 +17,16 @@ import org.json.me.JSONObject;
  * @author colinpoler
  */
 public class Parameter {
-    private static Hashtable existingParameters = new Hashtable();
-    public static Parameter getParameter(String name) {
-        Parameter p = (Parameter) existingParameters.get(name);
-        if(p == null) {
-            p = new Parameter();
-            p.value = 0;
-            existingParameters.put(name, p);
-        }
-        return p;
-    }
+    protected static Hashtable existingParameters = new Hashtable();
     public static void readFile() {
         try {
             JSONArray fileContents = GRTFileIO.fromJSONFileAsArray("parameters.json");
             for(int i = 0; i < fileContents.length(); i++) {
                 JSONObject jsonParameter = fileContents.getJSONObject(i);
-                String name = jsonParameter.getString("name");
-                double value = jsonParameter.getDouble("value");
-                Parameter p = getParameter(name);
-                if(p != null) {
-                    p.value = value;
-                } else {
-                    p = new Parameter();
-                    p.value = value;
-                    existingParameters.put(name, p);
-                }
+                String type = jsonParameter.getString("type");
             }
         } catch(JSONException ex) {
             ex.printStackTrace();
         }
-    }
-    
-    private double value;
-    public double getValue() {
-        return value;
     }
 }

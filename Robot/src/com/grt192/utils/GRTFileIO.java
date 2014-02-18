@@ -15,23 +15,27 @@ import com.sun.squawk.microedition.io.FileConnection;
 import org.json.me.JSONArray;
 
 public class GRTFileIO {
-
+        private static int previousHash = -1;
 	public static String getFileContents(String filename) {
 		String url = "file:///" + filename;
-		String contents = "";
+                StringBuffer contents = new StringBuffer();
 		try {
-			FileConnection c = (FileConnection) Connector.open(url);
-			BufferedReader buf = new BufferedReader(new InputStreamReader(c
-					.openInputStream()));
-			String line = "";
-			while ((line = buf.readLine()) != null) {
-				contents += line + "\n";
-			}
-			c.close();
+                    FileConnection c = (FileConnection) Connector.open(url);
+                    BufferedReader buf = new BufferedReader(new InputStreamReader(c.openInputStream()));
+                    int character = 0, hash = 17;
+                    while ((character = buf.read()) != -1) {
+                            contents.append(character);
+                            hash = 37 * hash + character;
+                    }
+                    c.close();
+                    if(hash == previousHash) {
+                        return null;
+                    }
+                    previousHash = hash;
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return contents;
+		return contents.toString();
 	}
 
 	public static JSONObject fromJSONFileAsObject(String filename) {
