@@ -17,6 +17,12 @@ import org.usfirst.frc0.Robot.commands.AutoAllianceZoneEntry;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.buttons.*;
+import org.usfirst.frc0.Robot.commands.EndCamTurn;
+import org.usfirst.frc0.Robot.commands.StartCamTurn;
+import org.usfirst.frc0.Robot.oi.Controller2014;
+import org.usfirst.frc0.Robot.oi.Controller2014.Controller2014Trigger;
+import org.usfirst.frc0.Robot.oi.SteerController;
+import org.usfirst.frc0.Robot.oi.TankController;
 
 public class OI {
     //// CREATING BUTTONS
@@ -45,62 +51,16 @@ public class OI {
     // Start the command when the button is released  and let it run the command
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
-    //PS3 Button Constants
-    private static final int TRIANGLE = 1;
-    private static final int CIRCLE = 2;
-    private static final int CROSS = 3;
-    private static final int SQUARE = 4;
-    private static final int LEFT_BUMPER_PS3 = 5;
-    private static final int RIGHT_BUMPER_PS3 = 6;
-    private static final int LEFT_TRIGGER = 7;
-    private static final int RIGHT_TRIGGER = 8;
-    private static final int SELECT = 9;
-    private static final int LEFT_JOYSTICK_PS3 = 10;
-    private static final int RIGHT_JOYSTICK_PS3 = 11;
-    private static final int START_PS3 = 12;
-    private static final int PS_BUTTON = 13;
-    private static final int DPAD_UP = 14;
-    private static final int DPAD_RIGHT = 15;
-    private static final int DPAD_DOWN = 16;
-    private static final int DPAD_LEFT = 17;
-    //PS3 Axis Constants
-    private static final int LEFT_Y_AXIS = 1;
-    private static final int LEFT_X_AXIS = 2;
-    private static final int RIGHT_Y_AXIS = 3;
-    private static final int RIGHT_X_AXIS = 6;
-    private static final int CONTROLLER_Z_AXIS = 5;
-    private static final int CONTROLLER_X_AXIS = 4;
+    
+    public static Controller2014 controller = new TankController();
 
-    //XBox Button constants
-    public static final int A = 1;
-    public static final int B = 2;
-    public static final int X = 3;
-    public static final int Y = 4;
-    public static final int LEFT_BUMPER = 5;
-    public static final int RIGHT_BUMPER = 6;
-    public static final int BACK = 7;
-    public static final int START = 8;
-    public static final int LEFT_JOYSTICK = 9;
-    public static final int RIGHT_JOYSTICK = 10;
-    //XBox Axis constants
-    public static final int LEFT_Y = 1;
-    public static final int LEFT_X = 2;
-    public static final int TRIGGERS = 3;
-    public static final int RIGHT_Y = 4;
-    public static final int RIGHT_X = 5;
-    public static final int DIRECTIONAL_PAD = 6;
-
-    Joystick pilot;
-    Joystick coPilot;
 
     public OI() {
         //Initialise Joysticks 
-        /*Joystick*/ pilot = new Joystick(1);
-        /*Joystick*/ coPilot = new Joystick(2);
 
         //Get and Send Button Values
         //CoPilot Values
-        JoystickButton switchFeeder = new JoystickButton(/*coPilot*/pilot, /*B*/RIGHT_JOYSTICK_PS3);
+        JoystickButton switchFeeder = new Controller2014Trigger(controller, Controller2014.FEEDER_EXTEND);
         switchFeeder.whenPressed(new SwitchFeeder());
         //JoystickButton lowerBlocker = new JoystickButton(coPilot, 4);
         //lowerBlocker.whenReleased(new LowerBlocker());
@@ -108,21 +68,25 @@ public class OI {
         //raiseBlocker.whenReleased(new RaiseBlocker());
         //Pilot Values
         
-        JoystickButton highBallEjection = new JoystickButton(pilot, /*Y*/RIGHT_BUMPER_PS3); //shoot ball
+        JoystickButton highBallEjection = new Controller2014Trigger(controller, Controller2014.SHOOTER_FIRE);
         highBallEjection.whileHeld(new HighBallEjection());
 
 //        JoystickButton lowBallEjection = new JoystickButton(pilot, X); //flick ball
 //        lowBallEjection.whenReleased(new LowBallEjection());
-        JoystickButton switchGears = new JoystickButton(pilot, LEFT_JOYSTICK_PS3);
+        JoystickButton switchGears = new Controller2014Trigger(controller, Controller2014.SWITCH_GEAR);
         switchGears.whenPressed(new SwitchGears());
         
-        JoystickButton startFeeding = new JoystickButton(pilot, LEFT_TRIGGER);
+        JoystickButton startFeeding = new Controller2014Trigger(controller, Controller2014.FEEDER_INTAKE);
         startFeeding.whenPressed(new StartFeeding());
         startFeeding.whenReleased(new EndFeeding());
         
-        JoystickButton reverseFeeding = new JoystickButton(pilot, RIGHT_TRIGGER);
+        JoystickButton reverseFeeding = new Controller2014Trigger(controller, Controller2014.FEEDER_OUTTAKE);
         reverseFeeding.whenPressed(new StartReverseFeeding());
         reverseFeeding.whenReleased(new EndFeeding());
+        
+        JoystickButton turnCam = new Controller2014Trigger(controller, Controller2014.SHOOTER_FIRE);
+        reverseFeeding.whenPressed(new StartCamTurn());
+        reverseFeeding.whenReleased(new EndCamTurn());
 
         // SmartDashboard Buttons
         SmartDashboard.putData("AutoScoreLow", new AutoScoreLow());
@@ -146,21 +110,5 @@ public class OI {
         SmartDashboard.putData("LowerBlocker", new LowerBlocker());
 
         SmartDashboard.putData("HighBallEjection", new HighBallEjection());
-    }
-
-    public double getLeftSpeed() {
-        double leftSpeed = pilot.getRawAxis(LEFT_X_AXIS);
-        if (pilot.getRawAxis(LEFT_X_AXIS) > 0.25) {
-            return leftSpeed * leftSpeed * leftSpeed;
-        }
-        return 0;
-    }
-
-    public double getRightSpeed() {
-        double rightSpeed = pilot.getRawAxis(RIGHT_X_AXIS);
-        if (pilot.getRawAxis(RIGHT_X_AXIS) > 0.25) {
-            return rightSpeed * rightSpeed * rightSpeed;
-        }
-        return 0;
     }
 }

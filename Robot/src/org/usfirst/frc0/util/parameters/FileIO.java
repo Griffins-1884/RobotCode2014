@@ -26,7 +26,7 @@ public class FileIO {
             BufferedReader buf = new BufferedReader(new InputStreamReader(c.openInputStream()));
             int character = 0, hash = 17;
             while ((character = buf.read()) != -1) {
-                contents.append(character);
+                contents.append((char) character);
                 hash = 37 * hash + character;
             }
             c.close();

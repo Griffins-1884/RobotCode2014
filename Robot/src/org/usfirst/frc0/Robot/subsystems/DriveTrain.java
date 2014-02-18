@@ -4,7 +4,7 @@ import org.usfirst.frc0.Robot.RobotMap;
 import edu.wpi.first.wpilibj.*;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import org.usfirst.frc0.Robot.commands.XBoxDrive;
+import org.usfirst.frc0.Robot.commands.DriveCommand;
 
 public class DriveTrain extends Subsystem {
 
@@ -75,7 +75,7 @@ public class DriveTrain extends Subsystem {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
         System.out.println("DriveTrain: initDefaultCommand performed");
-        setDefaultCommand(new XBoxDrive());
+        setDefaultCommand(new DriveCommand());
     }
 
     public void parameterRefresh() {

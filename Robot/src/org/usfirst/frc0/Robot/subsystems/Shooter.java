@@ -46,6 +46,7 @@ public class Shooter extends PIDSubsystem {
         // e.g. a sensor, like a potentiometer:
         // yourPot.getAverageVoltage() / kYourMaxVoltage;
 
+        System.out.println(shooterEncoder.pidGet());
         return shooterEncoder.pidGet();
     }
 
@@ -53,7 +54,14 @@ public class Shooter extends PIDSubsystem {
         // Use output to drive your system, like a motor
         // e.g. yourMotor.set(output);
 
-        shooterMotor.pidWrite(output);
+        //shooterMotor.pidWrite(output);
+    }
+
+    public void set(double output) {
+        // Use output to drive your system, like a motor
+        // e.g. yourMotor.set(output);
+
+        shooterMotor.set(output);
     }
 
     public void printEncoder() {
