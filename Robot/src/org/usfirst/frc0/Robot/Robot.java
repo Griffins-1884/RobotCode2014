@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import org.usfirst.frc0.util.Parameter;
+import org.usfirst.frc0.util.parameters.ParameterFile;
 
 public class Robot extends IterativeRobot {
 
@@ -30,7 +30,7 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
 	RobotMap.init();
-        Parameter.readFile();
+        ParameterFile.readFile();
         driveTrain = new DriveTrain();
         shooter = new Shooter();
         feeder = new Feeder();
@@ -87,7 +87,7 @@ public class Robot extends IterativeRobot {
     }
     
     public void parameterRefresh() {
-        if(Parameter.readFile()) {
+        if(ParameterFile.readFile()) {
             Robot.driveTrain.parameterRefresh();
             Robot.shooter.parameterRefresh();
             Robot.feeder.parameterRefresh();

@@ -1,4 +1,4 @@
-package org.usfirst.frc0.util;
+package org.usfirst.frc0.util.parameters;
 
 import org.json.me.JSONException;
 import org.json.me.JSONObject;
@@ -6,11 +6,11 @@ import org.json.me.JSONObject;
 public class DoubleParameter {
 
     public static DoubleParameter get(String name) {
-        DoubleParameter p = (DoubleParameter) Parameter.existingParameters.get(name);
+        DoubleParameter p = (DoubleParameter) ParameterFile.existingParameters.get(name);
         if (p == null) {
             p = new DoubleParameter();
             p.value = 0;
-            Parameter.existingParameters.put(name, p);
+            ParameterFile.existingParameters.put(name, p);
         }
         return p;
     }
@@ -24,7 +24,7 @@ public class DoubleParameter {
         } else {
             p = new DoubleParameter();
             ((DoubleParameter) p).value = value;
-            Parameter.existingParameters.put(name, p);
+            ParameterFile.existingParameters.put(name, p);
         }
     }
     protected double value;

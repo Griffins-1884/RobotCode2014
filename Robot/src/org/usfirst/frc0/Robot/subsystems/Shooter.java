@@ -7,8 +7,8 @@ import edu.wpi.first.wpilibj.PIDSource.PIDSourceParameter;
 
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import org.usfirst.frc0.util.DoubleParameter;
-import org.usfirst.frc0.util.Parameter;
+import org.usfirst.frc0.util.parameters.DoubleParameter;
+import org.usfirst.frc0.util.parameters.ParameterFile;
 
 public class Shooter extends PIDSubsystem {
 

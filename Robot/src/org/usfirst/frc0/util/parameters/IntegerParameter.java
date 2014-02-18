@@ -1,4 +1,4 @@
-package org.usfirst.frc0.util;
+package org.usfirst.frc0.util.parameters;
 
 import org.json.me.JSONException;
 import org.json.me.JSONObject;
@@ -6,11 +6,11 @@ import org.json.me.JSONObject;
 public class IntegerParameter {
 
     public static IntegerParameter get(String name) {
-        IntegerParameter p = (IntegerParameter) Parameter.existingParameters.get(name);
+        IntegerParameter p = (IntegerParameter) ParameterFile.existingParameters.get(name);
         if (p == null) {
             p = new IntegerParameter();
             p.value = 0;
-            Parameter.existingParameters.put(name, p);
+            ParameterFile.existingParameters.put(name, p);
         }
         return p;
     }
@@ -24,7 +24,7 @@ public class IntegerParameter {
         } else {
             p = new IntegerParameter();
             ((IntegerParameter) p).value = value;
-            Parameter.existingParameters.put(name, p);
+            ParameterFile.existingParameters.put(name, p);
         }
     }
     protected int value;

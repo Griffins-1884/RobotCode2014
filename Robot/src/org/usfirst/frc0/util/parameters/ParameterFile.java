@@ -1,11 +1,11 @@
-package org.usfirst.frc0.util;
+package org.usfirst.frc0.util.parameters;
 
 import java.util.Hashtable;
 import org.json.me.JSONArray;
 import org.json.me.JSONException;
 import org.json.me.JSONObject;
 
-public class Parameter {
+public class ParameterFile {
 
     protected static Hashtable existingParameters = new Hashtable();
 
