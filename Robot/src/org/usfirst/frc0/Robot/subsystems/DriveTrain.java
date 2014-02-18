@@ -87,4 +87,7 @@ public class DriveTrain extends Subsystem {
         System.out.println("DriveTrain: initDefaultCommand performed");
         setDefaultCommand(new XBoxDrive());
     }
+    
+    public void parameterRefresh() {
+    }
 }

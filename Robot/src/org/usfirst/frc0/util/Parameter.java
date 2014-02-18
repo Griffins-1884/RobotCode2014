@@ -19,7 +19,13 @@ import org.json.me.JSONObject;
 public class Parameter {
     private static Hashtable existingParameters = new Hashtable();
     public static Parameter getParameter(String name) {
-        return (Parameter) existingParameters.get(name);
+        Parameter p = (Parameter) existingParameters.get(name);
+        if(p == null) {
+            p = new Parameter();
+            p.value = 0;
+            existingParameters.put(name, p);
+        }
+        return p;
     }
     public static void readFile() {
         try {
@@ -28,7 +34,6 @@ public class Parameter {
                 JSONObject jsonParameter = fileContents.getJSONObject(i);
                 String name = jsonParameter.getString("name");
                 double value = jsonParameter.getDouble("value");
-                System.out.println(name);
                 Parameter p = getParameter(name);
                 if(p != null) {
                     p.value = value;

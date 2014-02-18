@@ -92,4 +92,7 @@ public class Feeder extends Subsystem {
         this.speed = 1;
         this.isExtended = false;
     }
+    
+    public void parameterRefresh() {
+    }
 }
