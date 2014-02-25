@@ -18,6 +18,7 @@ public class RaiseBlocker {
         }
         if(state == FINISHING) {
             internalFinish();
+            state = NOT_RUNNING;
         }
     }
     public static void start() {
