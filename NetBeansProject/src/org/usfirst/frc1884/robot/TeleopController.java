@@ -19,5 +19,6 @@ public class TeleopController {
         
         // Execute every command!!!
         RaiseBlocker.execute();
+        LowerBlocker.execute();
     }
 }
