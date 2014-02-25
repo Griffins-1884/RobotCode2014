@@ -2,6 +2,12 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/Users/jwang/RobotCode2014/NetBeansProject/src/org/usfirst/frc1884/robot/commands/RaiseBlocker.java</file>
+            <file>file:/Users/jwang/RobotCode2014/NetBeansProject/src/org/usfirst/frc1884/robot/commands/ShootShooter.java</file>
+            <file>file:/Users/jwang/RobotCode2014/NetBeansProject/src/org/usfirst/frc1884/robot/subsystems/Shooter.java</file>
+            <file>file:/Users/jwang/RobotCode2014/NetBeansProject/src/org/usfirst/frc1884/robot/commands/LowerBlocker.java</file>
+            <file>file:/Users/jwang/RobotCode2014/NetBeansProject/src/org/usfirst/frc1884/robot/commands/ReloadShooter.java</file>
+        </group>
     </open-files>
 </project-private>
