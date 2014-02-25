@@ -10,6 +10,10 @@ public class TeleopController {
         TeleopDrive.start();
     }
     public static void periodic() {
+        /******** DON'T DELETE THIS ********/
+        /*******/    OI.poll();     /*******/
+        /******** DON'T DELETE THIS ********/
+        
         if(OI.isBooleanChanged(OI.BLOCKER_EXTEND) && OI.isBooleanTrue(OI.BLOCKER_EXTEND)) {
             RaiseBlocker.start();
         }

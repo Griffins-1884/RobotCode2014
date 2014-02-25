@@ -12,7 +12,7 @@ public class OI {
                             SWITCH_GEAR = 7;
     
     public static void poll() {
-        
+        SteerController.poll();
     }
     
     private static double[] analogValues = new double[100];
