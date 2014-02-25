@@ -3,8 +3,6 @@ package org.usfirst.frc1884.robot.subsystems;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
-import edu.wpi.first.wpilibj.command.PIDSubsystem;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.usfirst.frc1884.util.pid.PIDEncoderTalonController;
 
 public class Blocker {
