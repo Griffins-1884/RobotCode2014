@@ -13,6 +13,9 @@ public class LowerBlocker {
         if(state == RUNNING) {
             internalRun();
         }
+        if(state == NOT_RUNNING) {
+            internalNotRun();
+        }
         if(state == FINISHING) {
             internalFinish();
         }
@@ -31,6 +34,8 @@ public class LowerBlocker {
         if(Blocker.isAtTarget()) {
             state = FINISHING;
         }
+    }
+    private static void internalNotRun() {
     }
     private static void internalFinish() {
         Blocker.setBlockerState(Blocker.BLOCKER_LOCK_OFF);

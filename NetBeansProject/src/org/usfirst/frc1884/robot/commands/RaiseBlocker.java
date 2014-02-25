@@ -13,6 +13,9 @@ public class RaiseBlocker {
         if(state == RUNNING) {
             internalRun();
         }
+        if(state == NOT_RUNNING) {
+            internalNotRun();
+        }
         if(state == FINISHING) {
             internalFinish();
         }
@@ -30,6 +33,8 @@ public class RaiseBlocker {
         if(Blocker.isAtTarget()) {
             state = FINISHING;
         }
+    }
+    private static void internalNotRun() {
     }
     private static void internalFinish() {
         Blocker.setBlockerState(Blocker.BLOCKER_LOCK_LOCK);

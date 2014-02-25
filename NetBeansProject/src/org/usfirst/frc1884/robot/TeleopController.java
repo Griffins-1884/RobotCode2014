@@ -9,11 +9,10 @@ public class TeleopController {
         
     }
     public static void periodic() {
-        if(OI.isBooleanTrue(OI.BLOCKER_EXTEND)) {
-            LowerBlocker.finish();
+        if(OI.isBooleanChanged(OI.BLOCKER_EXTEND) && OI.isBooleanTrue(OI.BLOCKER_EXTEND)) {
             RaiseBlocker.start();
-        } else {
-            RaiseBlocker.finish();
+        }
+        if(OI.isBooleanChanged(OI.BLOCKER_EXTEND) && !OI.isBooleanTrue(OI.BLOCKER_EXTEND)) {
             LowerBlocker.start();
         }
         
