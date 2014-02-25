@@ -1,52 +1,190 @@
+Description
 ===========
-DESCRIPTION
-===========
--Contains the code for the entire 2014 Robot aside from vision tracking.
+Code for the 2014 Robot.
 
-=================
-ELECTRONICS TABLE
-=================
-Equipment:
-8X Talons (Note one is extra)
-4X Quadrature Encoders
-4X Double Solenoids (Note one is extra)
-1X Compressor
-1X cRIO
-1X cRIO Digital Sidecar Module
-1X cRIO Solenoid Breakout Module
-1X Spike
-1X Digital Sidecar
-1X Power Distribution Board
+Electronic setup
+================
+Components
+----------
+<table>
+    <tr>
+        <th>Quantity</th>
+        <th>Item</th>
+        <th>Notes</th>
+    </tr>
+    <tr>
+        <td>8</td>
+        <td>Talon</td>
+        <td>One is extra</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Quadrature Encoders</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Double Solenoids</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Compressor</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>cRIO</td>
+        <td>Analog, digital and solenoid modules</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Spike</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Digital Sidecar</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Power Distribution Boad</td>
+        <td></td>
+    </tr>
+</table>
 
-Wireing Table:
+Wiring Table
+------------
 
-Digital Sidecar PWM Slots
-1 - Left Motor 1
-2 - Left Motor 2
-3 - Right Motor 1
-4 - Right Motor 2
-5 - Shooter Motor
-6 - Intake Motor
-7 - Blocker Motor
-8 - Spike Module
+### Digital Sidecar Speed Controller Ports
+<table>
+    <tr>
+        <th>Port</th>
+        <th>Device</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Left Drive Motor 1</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Left Drive Motor 2</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Right Drive Motor 1</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Right Drive Motor 2</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>Choo choo motor</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>Intake motor</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>Blocker motor</td>
+    </tr>
+    <tr>
+        <td>8</td>
+        <td>Unused</td>
+    </tr>
+</table>
 
-Digital Sidecar Digital Slots
-1 - Left Encoder A Channel
-2 - Left Encoder B Channel
-3 - Right Encoder A Channel
-4 - Right Encoder B Channel
-5 - Shooter Encoder A Channel
-6 - Shooter Encoder B Channel
-7 - Blocker Encoder A Channel
-8 - Blocker Encoder B Channel
-9 - Compressor Switch Channel
+### Digital Sidecar Digital I/O Ports
+<table>
+    <tr>
+        <th>Port</th>
+        <th>Device</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Unused</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Pressure switch</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Left Drive Encoder A Channel</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Right Drive Encoder B Channel</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>Left Drive Encoder A Channel</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>Right Drive Encoder B Channel</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>Choo choo Encoder A Channel</td>
+    </tr>
+    <tr>
+        <td>8</td>
+        <td>Choo choo Encoder B Channel</td>
+    </tr>
+    <tr>
+        <td>9</td>
+        <td>Blocker Encoder A Channel</td>
+    </tr>
+    <tr>
+        <td>10</td>
+        <td>Blocker Encoder B Channel</td>
+    </tr>
+</table>
 
-Solenoid Breakout Slots
-1 - Gear Switch Solenoid Forward Channel
-2 - Gear Switch Solenoid Reverse Channel
-3 - Ball Release Piston Solenoid Channel
-4 - Intake Piston Solenoid Forward Channel
-5 - Intake Piston Solenoid Reverse Channel
+### Digital Sidecar Relay Ports
+<table>
+    <tr>
+        <th>Port</th>
+        <th>Device</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Compressor spike</td>
+    </tr>
+</table>
 
-Spike Slots
-1 - Compressor Spike Channel
+### Solenoid Breakout Ports
+<table>
+    <tr>
+        <th>Port</th>
+        <th>Solenoid</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Gear Shifter: Shift high</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Gear Shifter: Shift low</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Intake Piston: Extend</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Intake Piston: Retract</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>Blocker piston: Lock</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>Blocker piston: Unlock</td>
+    </tr>
+</table>
