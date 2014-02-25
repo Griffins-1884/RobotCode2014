@@ -18,12 +18,17 @@ Components
         <td>One is extra</td>
     </tr>
     <tr>
+        <td>1</td>
+        <td>Spike</td>
+        <td></td>
+    </tr>
+    <tr>
         <td>4</td>
         <td>Quadrature Encoders</td>
         <td></td>
     </tr>
     <tr>
-        <td>4</td>
+        <td>3</td>
         <td>Double Solenoids</td>
         <td></td>
     </tr>
@@ -39,18 +44,18 @@ Components
     </tr>
     <tr>
         <td>1</td>
-        <td>Spike</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>1</td>
         <td>Digital Sidecar</td>
         <td></td>
     </tr>
     <tr>
         <td>1</td>
-        <td>Power Distribution Boad</td>
+        <td>Power Distribution Board</td>
         <td></td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Wireless bridge</td>
+        <td>With power adapter</td>
     </tr>
 </table>
 
