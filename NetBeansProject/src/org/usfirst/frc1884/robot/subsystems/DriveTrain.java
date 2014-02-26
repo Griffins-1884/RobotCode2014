@@ -9,6 +9,7 @@ public class DriveTrain {
     private static Talon leftMotor1, leftMotor2, rightMotor1, rightMotor2;
     private static DoubleSolenoid shiftingPiston;
     public static Value SHIFTER_SHIFT_HIGH = DoubleSolenoid.Value.kForward, SHIFTER_SHIFT_LOW = DoubleSolenoid.Value.kReverse, SHIFTER_SHIFT_OFF = DoubleSolenoid.Value.kOff;
+    private static long timeToTurnOffShiftingPiston = Long.MAX_VALUE;
     
     private static double leftSidePower = 0.0, rightSidePower = 0.0;
     private static Value shifterState = SHIFTER_SHIFT_OFF;
@@ -51,10 +52,17 @@ public class DriveTrain {
         shifterState = value;
         if(value != SHIFTER_SHIFT_OFF) {
             currentGear = value;
+            timeToTurnOffShiftingPiston = System.currentTimeMillis() + MILLISECONDS_TO_SHIFT;
         }
         shiftingPiston.set(shifterState);
     }
-
+    
+    public static void alwaysRun() {
+        if(System.currentTimeMillis() > timeToTurnOffShiftingPiston) {
+            timeToTurnOffShiftingPiston = Long.MAX_VALUE;
+            setShifterState(SHIFTER_SHIFT_OFF);
+        }
+    }
     public static void parameterRefresh() {
     }
 }

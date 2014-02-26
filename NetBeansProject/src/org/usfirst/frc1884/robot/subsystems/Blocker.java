@@ -6,11 +6,14 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import org.usfirst.frc1884.util.pid.PIDEncoderTalonController;
 
 public class Blocker {
+    public static long MILLISECONDS_TO_BLOCK_OR_UNBLOCK = 100;
+    
     private static Talon blockerMotor;
     private static Encoder blockerEncoder;
     private static PIDController blockerPIDController;
     private static DoubleSolenoid blockerLockingPiston;
     public static Value BLOCKER_LOCK_LOCK = DoubleSolenoid.Value.kForward, BLOCKER_LOCK_UNLOCK = DoubleSolenoid.Value.kReverse, BLOCKER_LOCK_OFF = DoubleSolenoid.Value.kOff;
+    private static long timeToTurnOffBlockerLockingPiston = Long.MAX_VALUE;
     
     private static Value blockerLockState = BLOCKER_LOCK_OFF;
     private static double goalPoint = 0.0;
@@ -30,6 +33,7 @@ public class Blocker {
     }
     public static void setBlockerState(Value value) {
         blockerLockState = value;
+        timeToTurnOffBlockerLockingPiston = System.currentTimeMillis() + MILLISECONDS_TO_BLOCK_OR_UNBLOCK;
         blockerLockingPiston.set(blockerLockState);
     }
     
@@ -43,7 +47,13 @@ public class Blocker {
     public static boolean isAtTarget() {
         return blockerPIDController.onTarget();
     }
-
+    
+    public static void alwaysRun() {
+        if(System.currentTimeMillis() > timeToTurnOffBlockerLockingPiston) {
+            timeToTurnOffBlockerLockingPiston = Long.MAX_VALUE;
+            setBlockerState(BLOCKER_LOCK_OFF);
+        }
+    }
     public static void parameterRefresh() {
     }
 }

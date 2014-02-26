@@ -29,20 +29,12 @@ public class DriveShiftLow {
     }
     private static void internalStart() {
         DriveTrain.setShifterState(DriveTrain.SHIFTER_SHIFT_LOW);
-        pistonIsOn = true;
         state = FINISHING;
     }
     private static void internalRun() {
     }
-    private static boolean pistonIsOn = false;
     private static void internalNotRun() {
-        if(pistonIsOn && System.currentTimeMillis() > timeToTurnOffPiston) {
-            pistonIsOn = false;
-            DriveTrain.setShifterState(DriveTrain.SHIFTER_SHIFT_OFF);
-        }
     }
-    private static long timeToTurnOffPiston = Long.MAX_VALUE;
     private static void internalFinish() {
-        timeToTurnOffPiston = System.currentTimeMillis() + DriveTrain.MILLISECONDS_TO_SHIFT;
     }
 }

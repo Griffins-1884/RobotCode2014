@@ -39,6 +39,5 @@ public class LowerBlocker {
     private static void internalNotRun() {
     }
     private static void internalFinish() {
-        Blocker.setBlockerState(Blocker.BLOCKER_LOCK_OFF);
     }
 }
