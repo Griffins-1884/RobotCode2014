@@ -15,7 +15,7 @@ public class Blocker {
     public static Value BLOCKER_LOCK_LOCK = DoubleSolenoid.Value.kForward, BLOCKER_LOCK_UNLOCK = DoubleSolenoid.Value.kReverse, BLOCKER_LOCK_OFF = DoubleSolenoid.Value.kOff;
     private static long timeToTurnOffBlockerLockingPiston = Long.MAX_VALUE;
     
-    private static Value blockerLockState = BLOCKER_LOCK_OFF;
+    private static Value blockerSolenoidState = BLOCKER_LOCK_OFF, blockerActualState = BLOCKER_LOCK_UNLOCK;
     private static double goalPoint = 0.0;
     
     static {
@@ -25,16 +25,22 @@ public class Blocker {
         blockerPIDController.setSetpoint(goalPoint);
         
         blockerLockingPiston = new DoubleSolenoid(1, 5, 6);
-        blockerLockingPiston.set(blockerLockState);
+        blockerLockingPiston.set(blockerSolenoidState);
     }
     
-    public static Value getBlockerLockState() {
-        return blockerLockState;
+    public static Value getBlockerSolenoidState() {
+        return blockerSolenoidState;
+    }
+    public static Value getBlockerActualState() {
+        return blockerActualState;
     }
     public static void setBlockerState(Value value) {
-        blockerLockState = value;
-        timeToTurnOffBlockerLockingPiston = System.currentTimeMillis() + MILLISECONDS_TO_BLOCK_OR_UNBLOCK;
-        blockerLockingPiston.set(blockerLockState);
+        blockerSolenoidState = value;
+        if(value != BLOCKER_LOCK_OFF) {
+            blockerActualState = value;
+            timeToTurnOffBlockerLockingPiston = System.currentTimeMillis() + MILLISECONDS_TO_BLOCK_OR_UNBLOCK;
+        }
+        blockerLockingPiston.set(blockerSolenoidState);
     }
     
     public static double getGoalPoint() {

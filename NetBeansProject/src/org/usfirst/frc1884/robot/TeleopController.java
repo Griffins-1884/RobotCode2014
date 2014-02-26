@@ -3,14 +3,17 @@ package org.usfirst.frc1884.robot;
 import org.usfirst.frc1884.robot.commands.DriveShiftHigh;
 import org.usfirst.frc1884.robot.commands.DriveShiftLow;
 import org.usfirst.frc1884.robot.commands.DriveShiftSwitch;
+import org.usfirst.frc1884.robot.commands.ExtendFeeder;
 import org.usfirst.frc1884.robot.commands.LowerBlocker;
 import org.usfirst.frc1884.robot.commands.RaiseBlocker;
 import org.usfirst.frc1884.robot.commands.ReloadShooter;
+import org.usfirst.frc1884.robot.commands.RetractFeeder;
 import org.usfirst.frc1884.robot.commands.ShootShooter;
 import org.usfirst.frc1884.robot.commands.TeleopDrive;
 import org.usfirst.frc1884.robot.oi.OI;
 import org.usfirst.frc1884.robot.subsystems.Blocker;
 import org.usfirst.frc1884.robot.subsystems.DriveTrain;
+import org.usfirst.frc1884.robot.subsystems.Intake;
 import org.usfirst.frc1884.robot.subsystems.Shooter;
 
 public class TeleopController {
@@ -48,10 +51,13 @@ public class TeleopController {
         DriveShiftHigh.execute();
         DriveShiftLow.execute();
         DriveShiftSwitch.execute();
+        ExtendFeeder.execute();
+        RetractFeeder.execute();
         
         // Have subsystems do their thing
         DriveTrain.alwaysRun();
         Blocker.alwaysRun();
         Shooter.alwaysRun();
+        Intake.alwaysRun();
     }
 }

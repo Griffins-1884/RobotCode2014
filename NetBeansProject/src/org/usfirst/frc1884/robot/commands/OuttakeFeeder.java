@@ -1,8 +1,8 @@
 package org.usfirst.frc1884.robot.commands;
 
-import org.usfirst.frc1884.robot.subsystems.DriveTrain;
+import org.usfirst.frc1884.robot.subsystems.Intake;
 
-public class DriveShiftSwitch {
+public class OuttakeFeeder {
     public static final byte NOT_RUNNING = -1, STARTING = 0, RUNNING = 1, FINISHING = 2;
     private static byte state = NOT_RUNNING;
     public static void execute() {
@@ -28,17 +28,13 @@ public class DriveShiftSwitch {
         state = FINISHING;
     }
     private static void internalStart() {
-        if(DriveTrain.getShifterActualState() == DriveTrain.SHIFTER_SHIFT_HIGH) {
-            DriveTrain.setShifterState(DriveTrain.SHIFTER_SHIFT_LOW);
-        } else {
-            DriveTrain.setShifterState(DriveTrain.SHIFTER_SHIFT_HIGH);
-        }
-        state = FINISHING;
+        Intake.setIntakePower(-1.0);
     }
     private static void internalRun() {
     }
     private static void internalNotRun() {
     }
     private static void internalFinish() {
+        Intake.setIntakePower(0.0);
     }
 }

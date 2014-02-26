@@ -12,8 +12,7 @@ public class DriveTrain {
     private static long timeToTurnOffShiftingPiston = Long.MAX_VALUE;
     
     private static double leftSidePower = 0.0, rightSidePower = 0.0;
-    private static Value shifterState = SHIFTER_SHIFT_OFF;
-    private static Value currentGear = SHIFTER_SHIFT_HIGH;
+    private static Value shifterSolenoidState = SHIFTER_SHIFT_OFF, shifterActualState = SHIFTER_SHIFT_HIGH;
     
     static {
         leftMotor1 = new Talon(1, 1);
@@ -42,19 +41,19 @@ public class DriveTrain {
         rightMotor2.set(rightSidePower);
     }
     
-    public static Value getShifterPistonState() {
-        return shifterState;
+    public static Value getShifterSolenoidState() {
+        return shifterSolenoidState;
     }
-    public static Value getCurrentGear() {
-        return currentGear;
+    public static Value getShifterActualState() {
+        return shifterActualState;
     }
     public static void setShifterState(Value value) {
-        shifterState = value;
+        shifterSolenoidState = value;
         if(value != SHIFTER_SHIFT_OFF) {
-            currentGear = value;
+            shifterActualState = value;
             timeToTurnOffShiftingPiston = System.currentTimeMillis() + MILLISECONDS_TO_SHIFT;
         }
-        shiftingPiston.set(shifterState);
+        shiftingPiston.set(shifterSolenoidState);
     }
     
     public static void alwaysRun() {
