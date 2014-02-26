@@ -9,6 +9,9 @@ import org.usfirst.frc1884.robot.commands.ReloadShooter;
 import org.usfirst.frc1884.robot.commands.ShootShooter;
 import org.usfirst.frc1884.robot.commands.TeleopDrive;
 import org.usfirst.frc1884.robot.oi.OI;
+import org.usfirst.frc1884.robot.subsystems.Blocker;
+import org.usfirst.frc1884.robot.subsystems.DriveTrain;
+import org.usfirst.frc1884.robot.subsystems.Shooter;
 
 public class TeleopController {
     public static void init() {
@@ -45,5 +48,10 @@ public class TeleopController {
         DriveShiftHigh.execute();
         DriveShiftLow.execute();
         DriveShiftSwitch.execute();
+        
+        // Have subsystems do their thing
+        DriveTrain.alwaysRun();
+        Blocker.alwaysRun();
+        Shooter.alwaysRun();
     }
 }
