@@ -25,6 +25,9 @@ public class TeleopController {
         /*******/    OI.poll();     /*******/
         /******** DON'T DELETE THIS ********/
         
+        if(OI.isBooleanChanged(OI.FLIP_DRIVE) && OI.isBooleanTrue(OI.FLIP_DRIVE)) {
+            TeleopDrive.flipDrive();
+        }
         if(OI.isBooleanChanged(OI.SWITCH_GEAR) && OI.isBooleanTrue(OI.SWITCH_GEAR)) {
             DriveShiftSwitch.start();
         }

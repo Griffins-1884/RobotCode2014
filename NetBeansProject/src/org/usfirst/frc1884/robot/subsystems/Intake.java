@@ -15,9 +15,9 @@ public class Intake {
     private static Value extenderSolenoidState = EXTENDER_OFF, extenderActualState = EXTENDER_RETRACT;
     
     static {
-        intakeMotor = new Talon(1, 1);
+        intakeMotor = new Talon(1, 6);
         
-        extendingPiston = new DoubleSolenoid(1, 1, 2);
+        extendingPiston = new DoubleSolenoid(1, 3, 4);
     }
     
     public static double getIntakePower() {

@@ -9,7 +9,8 @@ public class OI {
                             FEEDER_EXTEND = 3,
                             FEEDER_OUTTAKE = 5,
                             BLOCKER_EXTEND = 6,
-                            SWITCH_GEAR = 7;
+                            SWITCH_GEAR = 7,
+                            FLIP_DRIVE = 8;
     
     public static void poll() {
         SteerController.poll();

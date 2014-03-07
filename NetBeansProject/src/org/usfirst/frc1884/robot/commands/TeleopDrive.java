@@ -31,12 +31,16 @@ public class TeleopDrive {
     private static void internalStart() {
     }
     private static void internalRun() {
-        double forward = OI.getAnalogValue(OI.DRIVE_FORWARD),
+        double forward = OI.getAnalogValue(OI.DRIVE_FORWARD) * forwardMultiplier,
                counterclockwise = OI.getAnalogValue(OI.DRIVE_COUNTERCLOCKWISE);
         double leftValue = forward - counterclockwise,
                rightValue = -forward - counterclockwise;
         DriveTrain.setLeftSidePower(Math.max(Math.min(leftValue, 1.0), -1.0));
         DriveTrain.setRightSidePower(Math.max(Math.min(rightValue, 1.0), -1.0));
+    }
+    private static int forwardMultiplier = -1;
+    public static void flipDrive() {
+        forwardMultiplier *= -1;
     }
     private static void internalNotRun() {
     }
