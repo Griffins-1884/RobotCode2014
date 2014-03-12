@@ -2,39 +2,21 @@ package org.usfirst.frc1884.robot.commands;
 
 import org.usfirst.frc1884.robot.subsystems.DriveTrain;
 
-public class DriveShiftHigh {
-    public static final byte NOT_RUNNING = -1, STARTING = 0, RUNNING = 1, FINISHING = 2;
-    private static byte state = NOT_RUNNING;
-    public static void execute() {
-        if(state == STARTING) {
-            state = RUNNING;
-            internalStart();
-        }
-        if(state == RUNNING) {
-            internalRun();
-        }
-        if(state == NOT_RUNNING) {
-            internalNotRun();
-        }
-        if(state == FINISHING) {
-            internalFinish();
-            state = NOT_RUNNING;
-        }
+public class DriveShiftHigh extends Command {
+    public static final DriveShiftHigh instance;
+    static {
+        instance = new DriveShiftHigh();
+        Commands.registerCommand(instance);
     }
-    public static void start() {
-        state = STARTING;
-    }
-    public static void finish() {
+    private DriveShiftHigh() {}
+    void internalStart() {
+        DriveTrain.instance.setShifterState(DriveTrain.SHIFTER_SHIFT_HIGH);
         state = FINISHING;
     }
-    private static void internalStart() {
-        DriveTrain.setShifterState(DriveTrain.SHIFTER_SHIFT_HIGH);
-        state = FINISHING;
+    void internalRun() {
     }
-    private static void internalRun() {
+    void internalNotRun() {
     }
-    private static void internalNotRun() {
-    }
-    private static void internalFinish() {
+    void internalFinish() {
     }
 }

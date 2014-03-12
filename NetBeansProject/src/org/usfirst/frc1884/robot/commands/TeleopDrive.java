@@ -3,49 +3,30 @@ package org.usfirst.frc1884.robot.commands;
 import org.usfirst.frc1884.robot.oi.OI;
 import org.usfirst.frc1884.robot.subsystems.DriveTrain;
 
-public class TeleopDrive {
-    public static final byte NOT_RUNNING = -1, STARTING = 0, RUNNING = 1, FINISHING = 2;
-    private static byte state = NOT_RUNNING;
-    public static void execute() {
-        if(state == STARTING) {
-            state = RUNNING;
-            internalStart();
-        }
-        if(state == RUNNING) {
-            internalRun();
-        }
-        if(state == NOT_RUNNING) {
-            internalNotRun();
-        }
-        if(state == FINISHING) {
-            internalFinish();
-            state = NOT_RUNNING;
-        }
+public class TeleopDrive extends Command {
+    public static final TeleopDrive instance;
+    static {
+        instance = new TeleopDrive();
+        Commands.registerCommand(instance);
     }
-    public static void start() {
-        state = STARTING;
+    void internalStart() {
     }
-    public static void finish() {
-        state = FINISHING;
-    }
-    private static void internalStart() {
-    }
-    private static void internalRun() {
+    void internalRun() {
         double forward = OI.getAnalogValue(OI.DRIVE_FORWARD) * forwardMultiplier,
                counterclockwise = OI.getAnalogValue(OI.DRIVE_COUNTERCLOCKWISE);
         double leftValue = forward - counterclockwise,
                rightValue = -forward - counterclockwise;
-        DriveTrain.setLeftSidePower(Math.max(Math.min(leftValue, 1.0), -1.0));
-        DriveTrain.setRightSidePower(Math.max(Math.min(rightValue, 1.0), -1.0));
+        DriveTrain.instance.setLeftSidePower(Math.max(Math.min(leftValue, 1.0), -1.0));
+        DriveTrain.instance.setRightSidePower(Math.max(Math.min(rightValue, 1.0), -1.0));
     }
-    private static int forwardMultiplier = -1;
-    public static void flipDrive() {
+    int forwardMultiplier = -1;
+    public void flipDrive() {
         forwardMultiplier *= -1;
     }
-    private static void internalNotRun() {
+    void internalNotRun() {
     }
-    private static void internalFinish() {
-        DriveTrain.setLeftSidePower(0.0);
-        DriveTrain.setRightSidePower(0.0);
+    void internalFinish() {
+        DriveTrain.instance.setLeftSidePower(0.0);
+        DriveTrain.instance.setRightSidePower(0.0);
     }
 }

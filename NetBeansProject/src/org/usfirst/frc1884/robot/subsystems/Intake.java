@@ -3,38 +3,43 @@ package org.usfirst.frc1884.robot.subsystems;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
-public class Intake {
+public class Intake extends Subsystem {
+    public static final Intake instance;
+    static {
+        instance = new Intake();
+        Subsystems.registerSubsystem(instance);
+    }
     public static long MILLISECONDS_TO_EXTEND = 1000;
     
-    private static Talon intakeMotor;
-    private static DoubleSolenoid extendingPiston;
-    public static Value EXTENDER_EXTEND = DoubleSolenoid.Value.kForward, EXTENDER_RETRACT = DoubleSolenoid.Value.kReverse, EXTENDER_OFF = DoubleSolenoid.Value.kOff;
-    private static long timeToTurnOffShiftingPiston = Long.MAX_VALUE;
+    private Talon intakeMotor;
+    private DoubleSolenoid extendingPiston;
+    public static final Value EXTENDER_EXTEND = DoubleSolenoid.Value.kForward, EXTENDER_RETRACT = DoubleSolenoid.Value.kReverse, EXTENDER_OFF = DoubleSolenoid.Value.kOff;
+    private long timeToTurnOffShiftingPiston = Long.MAX_VALUE;
     
-    private static double intakePower = 0.0;
-    private static Value extenderSolenoidState = EXTENDER_OFF, extenderActualState = EXTENDER_RETRACT;
+    private double intakePower = 0.0;
+    private Value extenderSolenoidState = EXTENDER_OFF, extenderActualState = EXTENDER_RETRACT;
     
-    static {
+    private Intake() {
         intakeMotor = new Talon(1, 6);
         
         extendingPiston = new DoubleSolenoid(1, 3, 4);
     }
     
-    public static double getIntakePower() {
+    public double getIntakePower() {
         return intakePower;
     }
-    public static void setIntakePower(double value) {
+    public void setIntakePower(double value) {
         intakePower = value;
         intakeMotor.set(intakePower);
     }
     
-    public static Value getExtenderSolenoidState() {
+    public Value getExtenderSolenoidState() {
         return extenderSolenoidState;
     }
-    public static Value getExtenderActualState() {
+    public Value getExtenderActualState() {
         return extenderActualState;
     }
-    public static void setExtenderState(Value value) {
+    public void setExtenderState(Value value) {
         extenderSolenoidState = value;
         if(value != EXTENDER_OFF) {
             extenderActualState = value;
@@ -43,12 +48,12 @@ public class Intake {
         extendingPiston.set(extenderSolenoidState);
     }
     
-    public static void alwaysRun() {
+    public void alwaysRun() {
         if(System.currentTimeMillis() > timeToTurnOffShiftingPiston) {
             timeToTurnOffShiftingPiston = Long.MAX_VALUE;
             setExtenderState(EXTENDER_OFF);
         }
     }
-    public static void parameterRefresh() {
+    public void parameterRefresh() {
     }
 }

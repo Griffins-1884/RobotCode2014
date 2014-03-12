@@ -2,39 +2,20 @@ package org.usfirst.frc1884.robot.commands;
 
 import org.usfirst.frc1884.robot.subsystems.Intake;
 
-public class ExtendFeeder {
-    public static final byte NOT_RUNNING = -1, STARTING = 0, RUNNING = 1, FINISHING = 2;
-    private static byte state = NOT_RUNNING;
-    public static void execute() {
-        if(state == STARTING) {
-            state = RUNNING;
-            internalStart();
-        }
-        if(state == RUNNING) {
-            internalRun();
-        }
-        if(state == NOT_RUNNING) {
-            internalNotRun();
-        }
-        if(state == FINISHING) {
-            internalFinish();
-            state = NOT_RUNNING;
-        }
+public class ExtendFeeder extends Command {
+    public static final ExtendFeeder instance;
+    static {
+        instance = new ExtendFeeder();
+        Commands.registerCommand(instance);
     }
-    public static void start() {
-        state = STARTING;
-    }
-    public static void finish() {
+    void internalStart() {
+        Intake.instance.setExtenderState(Intake.EXTENDER_EXTEND);
         state = FINISHING;
     }
-    private static void internalStart() {
-        Intake.setExtenderState(Intake.EXTENDER_EXTEND);
-        state = FINISHING;
+    void internalRun() {
     }
-    private static void internalRun() {
+    void internalNotRun() {
     }
-    private static void internalNotRun() {
-    }
-    private static void internalFinish() {
+    void internalFinish() {
     }
 }

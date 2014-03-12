@@ -92,14 +92,6 @@ Wiring Table
         <td>6</td>
         <td>Intake motor</td>
     </tr>
-    <tr>
-        <td>7</td>
-        <td>Blocker motor</td>
-    </tr>
-    <tr>
-        <td>8</td>
-        <td>Unused</td>
-    </tr>
 </table>
 
 ### Digital Sidecar Digital I/O Ports
@@ -109,28 +101,8 @@ Wiring Table
         <th>Device</th>
     </tr>
     <tr>
-        <td>1</td>
-        <td>Unused</td>
-    </tr>
-    <tr>
         <td>2</td>
         <td>Pressure switch</td>
-    </tr>
-    <tr>
-        <td>3</td>
-        <td>Left Drive Encoder A Channel</td>
-    </tr>
-    <tr>
-        <td>4</td>
-        <td>Right Drive Encoder B Channel</td>
-    </tr>
-    <tr>
-        <td>5</td>
-        <td>Left Drive Encoder A Channel</td>
-    </tr>
-    <tr>
-        <td>6</td>
-        <td>Right Drive Encoder B Channel</td>
     </tr>
     <tr>
         <td>7</td>
@@ -139,14 +111,6 @@ Wiring Table
     <tr>
         <td>8</td>
         <td>Choo choo Encoder B Channel</td>
-    </tr>
-    <tr>
-        <td>9</td>
-        <td>Blocker Encoder A Channel</td>
-    </tr>
-    <tr>
-        <td>10</td>
-        <td>Blocker Encoder B Channel</td>
     </tr>
 </table>
 
@@ -183,13 +147,5 @@ Wiring Table
     <tr>
         <td>4</td>
         <td>Intake Piston: Retract</td>
-    </tr>
-    <tr>
-        <td>5</td>
-        <td>Blocker piston: Lock</td>
-    </tr>
-    <tr>
-        <td>6</td>
-        <td>Blocker piston: Unlock</td>
     </tr>
 </table>

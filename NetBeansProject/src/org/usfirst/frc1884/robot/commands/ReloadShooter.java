@@ -2,43 +2,22 @@ package org.usfirst.frc1884.robot.commands;
 
 import org.usfirst.frc1884.robot.subsystems.Shooter;
 
-public class ReloadShooter {
-    
-    public static final byte NOT_RUNNING = -1, STARTING = 0, RUNNING = 1, FINISHING = 2;
-    private static byte state = NOT_RUNNING;
-    public static void execute() {
-        if(state == STARTING) {
-            state = RUNNING;
-            internalStart();
-        }
-        if(state == RUNNING) {
-            internalRun();
-        }
-        if(state == NOT_RUNNING) {
-            internalNotRun();
-        }
-        if(state == FINISHING) {
-            internalFinish();
-            state = NOT_RUNNING;
-        }
+public class ReloadShooter extends Command {
+    public static final ReloadShooter instance;
+    static {
+        instance = new ReloadShooter();
+        Commands.registerCommand(instance);
     }
-    public static void start() {
-        state = STARTING;
+    void internalStart() {
+        Shooter.instance.setGoalPoint(1.0);
     }
-    public static void finish() {
-        state = FINISHING;
-    }
-    private static void internalStart() {
-        Shooter.setGoalPoint(1.0);
-    }
-    private static void internalRun() {
-        if(Shooter.isAtTarget()) {
+    void internalRun() {
+        if(Shooter.instance.isAtTarget()) {
             state = FINISHING;
         }
     }
-    private static void internalNotRun() {
+    void internalNotRun() {
     }
-    private static void internalFinish() {
+    void internalFinish() {
     }
-    
 }
