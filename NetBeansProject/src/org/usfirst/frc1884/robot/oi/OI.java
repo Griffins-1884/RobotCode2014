@@ -37,4 +37,13 @@ public class OI {
             booleanValues[constant] = (byte) (0x2 | ((value) ? 0x1 : 0x0));
         }
     }
+    public static boolean whenPressed(int constant) {
+        return isBooleanTrue(constant) && isBooleanChanged(constant);
+    }
+    public static boolean whenReleased(int constant) {
+        return !isBooleanTrue(constant) && isBooleanChanged(constant);
+    }
+    public static boolean whileHeld(int constant) {
+        return isBooleanTrue(constant);
+    }
 }

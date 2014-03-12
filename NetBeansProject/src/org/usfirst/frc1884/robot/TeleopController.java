@@ -19,17 +19,17 @@ public class TeleopController {
         DriveTrain.instance.startCompressor();
     }
     public static void periodic() {
-        if(OI.isBooleanChanged(OI.FLIP_DRIVE) && OI.isBooleanTrue(OI.FLIP_DRIVE)) {
+        if(OI.whenPressed(OI.FLIP_DRIVE)) {
             TeleopDrive.instance.flipDrive();
         }
-        if(OI.isBooleanChanged(OI.SWITCH_GEAR) && OI.isBooleanTrue(OI.SWITCH_GEAR)) {
+        if(OI.whenPressed(OI.SWITCH_GEAR)) {
             DriveShiftSwitch.instance.start();
         }
         
-        if(OI.isBooleanChanged(OI.SHOOTER_RELOAD) && OI.isBooleanTrue(OI.SHOOTER_RELOAD)) {
+        if(OI.whenPressed(OI.SHOOTER_RELOAD)) {
             ReloadShooter.instance.start();
         }
-        if(OI.isBooleanChanged(OI.SHOOTER_FIRE) && OI.isBooleanTrue(OI.SHOOTER_FIRE)) {
+        if(OI.whenPressed(OI.SHOOTER_FIRE)) {
             ShootShooter.instance.start();
         }
     }
