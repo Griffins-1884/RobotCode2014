@@ -19,6 +19,8 @@ public class DriveTrain extends Subsystem {
     private double leftSidePower = 0.0, rightSidePower = 0.0;
     private Value shifterSolenoidState = SHIFTER_SHIFT_OFF, shifterActualState = SHIFTER_SHIFT_HIGH;
     
+    private Compressor compressor;
+    
     private DriveTrain() {
         leftMotor1 = new Talon(1, 1);
         leftMotor2 = new Talon(1, 2);
@@ -26,6 +28,8 @@ public class DriveTrain extends Subsystem {
         rightMotor2 = new Talon(1, 4);
         
         shiftingPiston = new DoubleSolenoid(1, 1, 2);
+        
+        compressor = new Compressor(1, 2, 1, 1);
     }
     
     public double getLeftSidePower() {
@@ -59,6 +63,13 @@ public class DriveTrain extends Subsystem {
             timeToTurnOffShiftingPiston = System.currentTimeMillis() + MILLISECONDS_TO_SHIFT;
         }
         shiftingPiston.set(shifterSolenoidState);
+    }
+    
+    public void startCompressor() {
+        compressor.start();
+    }
+    public void stopCompressor() {
+        compressor.stop();
     }
     
     public void alwaysRun() {

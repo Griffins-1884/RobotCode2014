@@ -16,6 +16,7 @@ import org.usfirst.frc1884.robot.subsystems.Shooter;
 public class TeleopController {
     public static void init() {
         TeleopDrive.instance.start();
+        DriveTrain.instance.startCompressor();
     }
     public static void periodic() {
         if(OI.isBooleanChanged(OI.FLIP_DRIVE) && OI.isBooleanTrue(OI.FLIP_DRIVE)) {
