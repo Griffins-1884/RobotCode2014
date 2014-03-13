@@ -20,10 +20,12 @@ public class Shooter extends Subsystem {
     private Shooter() {
         chooChooMotor = new Talon(1, 5);
         chooChooEncoder = new Encoder(1, 7, 1, 8);
-        chooChooPIDController = new PIDEncoderTalonController(1.0, 0.0, 0.0, chooChooEncoder, chooChooMotor);
-        chooChooPIDController.setContinuous(true);
-        chooChooPIDController.setAbsoluteTolerance(0.2);
-        chooChooPIDController.setSetpoint(goalPoint);
+        chooChooEncoder.setDistancePerPulse(360.0/250.0);
+        chooChooEncoder.start();
+//        chooChooPIDController = new PIDEncoderTalonController(1.0, 0.0, 0.0, chooChooEncoder, chooChooMotor);
+//        chooChooPIDController.setContinuous(true);
+//        chooChooPIDController.setAbsoluteTolerance(0.2);
+//        chooChooPIDController.setSetpoint(goalPoint);
     }
     
     public double getGoalPoint() {
@@ -32,6 +34,12 @@ public class Shooter extends Subsystem {
     public void setGoalPoint(double value) {
         goalPoint = value;
         chooChooPIDController.setSetpoint(goalPoint);
+    }
+    public void setMotorPower(double value) {
+        chooChooMotor.set(value);
+    }
+    public double getEncoderDistance() {
+        return chooChooEncoder.getDistance();
     }
     public boolean isAtTarget() {
         return chooChooPIDController.onTarget();

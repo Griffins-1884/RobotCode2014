@@ -15,11 +15,9 @@ public class SteerController {
 //        OI.setBooleanValue(OI.FEEDER_EXTEND, controller.getButtonCross());
 //        OI.setBooleanValue(OI.FEEDER_INTAKE, controller.getButtonSquare());
 //        OI.setBooleanValue(OI.FEEDER_OUTTAKE, controller.getButtonCircle());
-//        OI.setBooleanValue(OI.BLOCKER_EXTEND, controller.getButtonTriangle());
         OI.setBooleanValue(OI.FEEDER_EXTEND, controller.getButtonA());
         OI.setBooleanValue(OI.FEEDER_INTAKE, controller.getButtonX());
         OI.setBooleanValue(OI.FEEDER_OUTTAKE, controller.getButtonB());
-        OI.setBooleanValue(OI.BLOCKER_EXTEND, controller.getButtonY());
         OI.setBooleanValue(OI.SHOOTER_FIRE, controller.getRightUpperTrigger());
         OI.setBooleanValue(OI.SHOOTER_RELOAD, controller.getRightLowerTrigger());
         OI.setBooleanValue(OI.SWITCH_GEAR, controller.getLeftStick());

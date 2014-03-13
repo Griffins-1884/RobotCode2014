@@ -24,23 +24,29 @@ public class TeleopController {
             DriveShiftSwitch.instance.start();
         }
         
-        if(OI.whenPressed(OI.SHOOTER_RELOAD)) {
-            ReloadShooter.instance.start();
-        }
         if(OI.whenPressed(OI.SHOOTER_FIRE)) {
             ShootShooter.instance.start();
+        } else if(OI.whenPressed(OI.SHOOTER_RELOAD)) {
+            ReloadShooter.instance.start();
+        } else if(OI.whenReleased(OI.SHOOTER_FIRE)) {
+            ShootShooter.instance.finish();
+        } else if(OI.whenReleased(OI.SHOOTER_RELOAD)) {
+            ReloadShooter.instance.finish();
         }
         
         if(OI.whenPressed(OI.FEEDER_INTAKE)) {
             IntakeFeeder.instance.start();
-        }
-        if(OI.whenPressed(OI.FEEDER_OUTTAKE)) {
+        } else if(OI.whenPressed(OI.FEEDER_OUTTAKE)) {
             OuttakeFeeder.instance.start();
+        } else if(OI.whenReleased(OI.FEEDER_INTAKE)) {
+            IntakeFeeder.instance.finish();
+        } else if(OI.whenReleased(OI.FEEDER_OUTTAKE)) {
+            OuttakeFeeder.instance.finish();
         }
+        
         if(OI.whenPressed(OI.FEEDER_EXTEND)) {
             ExtendFeeder.instance.start();
-        }
-        if(OI.whenReleased(OI.FEEDER_EXTEND)) {
+        } else if(OI.whenReleased(OI.FEEDER_EXTEND)) {
             RetractFeeder.instance.start();
         }
     }

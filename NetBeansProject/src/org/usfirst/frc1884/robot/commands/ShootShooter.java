@@ -9,15 +9,18 @@ public class ShootShooter extends Command {
         Commands.registerCommand(instance);
     }
     void internalStart() {
-        Shooter.instance.setGoalPoint(1.0);
+//        Shooter.instance.setGoalPoint(1.0);
+        Shooter.instance.setMotorPower(1.0);
     }
     void internalRun() {
-        if(Shooter.instance.isAtTarget()) {
-            state = FINISHING;
-        }
+//        if(Shooter.instance.isAtTarget()) {
+//            state = FINISHING;
+//        }
     }
     void internalNotRun() {
     }
     void internalFinish() {
+        Shooter.instance.setMotorPower(0.0);
+        System.out.println("finishing fire " + Shooter.instance.getEncoderDistance());
     }
 }
