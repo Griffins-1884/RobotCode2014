@@ -2,6 +2,7 @@ package org.usfirst.frc1884.robot.subsystems;
 
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import org.usfirst.frc1884.util.misc.SingleSolenoidMasqueradingAsDoubleSolenoid;
 
 public class Intake extends Subsystem {
     public static final Intake instance;
@@ -12,7 +13,7 @@ public class Intake extends Subsystem {
     public static long MILLISECONDS_TO_EXTEND = 1000;
     
     private Talon intakeMotor;
-    private DoubleSolenoid extendingPiston;
+    private SingleSolenoidMasqueradingAsDoubleSolenoid extendingPiston;
     public static final Value EXTENDER_EXTEND = DoubleSolenoid.Value.kForward, EXTENDER_RETRACT = DoubleSolenoid.Value.kReverse, EXTENDER_OFF = DoubleSolenoid.Value.kOff;
     private long timeToTurnOffShiftingPiston = Long.MAX_VALUE;
     
@@ -22,7 +23,7 @@ public class Intake extends Subsystem {
     private Intake() {
         intakeMotor = new Talon(1, 6);
         
-        extendingPiston = new DoubleSolenoid(1, 3, 4);
+        extendingPiston = new SingleSolenoidMasqueradingAsDoubleSolenoid(1, 3, 4);
     }
     
     public double getIntakePower() {
