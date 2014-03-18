@@ -49,4 +49,16 @@ public class Shooter extends Subsystem {
     }
     public void parameterRefresh() {
     }
+    public static class ShooterPIDController extends PIDEncoderTalonController {
+        public ShooterPIDController(double p, double i, double d, Encoder input, Talon output) {
+            super(p, i, d, input, output);
+        }
+        public double calculateError(double target, double position) {
+            double result = target - position;
+            if(result <= -5.0) {
+                result += 360.0;
+            }
+            return result;
+        }
+    }
 }
