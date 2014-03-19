@@ -3,7 +3,7 @@ package org.usfirst.frc1884.robot.commands;
 public abstract class Command {
     public static final byte NOT_RUNNING = -1, STARTING = 0, RUNNING = 1, FINISHING = 2;
     
-    byte state = NOT_RUNNING;
+    public byte state = NOT_RUNNING;
     public void execute() {
         if(state == STARTING) {
             state = RUNNING;

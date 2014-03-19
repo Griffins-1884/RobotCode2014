@@ -1,12 +1,12 @@
 package org.usfirst.frc1884.robot;
 
+import org.usfirst.frc1884.robot.commands.Command;
 import org.usfirst.frc1884.robot.commands.DriveShiftSwitch;
 import org.usfirst.frc1884.robot.commands.ExtendFeeder;
+import org.usfirst.frc1884.robot.commands.FireAndReload;
 import org.usfirst.frc1884.robot.commands.IntakeFeeder;
 import org.usfirst.frc1884.robot.commands.OuttakeFeeder;
-import org.usfirst.frc1884.robot.commands.ReloadShooter;
 import org.usfirst.frc1884.robot.commands.RetractFeeder;
-import org.usfirst.frc1884.robot.commands.ShootShooter;
 import org.usfirst.frc1884.robot.commands.TeleopDrive;
 import org.usfirst.frc1884.robot.oi.OI;
 import org.usfirst.frc1884.robot.subsystems.DriveTrain;
@@ -25,13 +25,9 @@ public class TeleopController {
         }
         
         if(OI.whenPressed(OI.SHOOTER_FIRE)) {
-            ShootShooter.instance.start();
-        } else if(OI.whenPressed(OI.SHOOTER_RELOAD)) {
-            ReloadShooter.instance.start();
-        } else if(OI.whenReleased(OI.SHOOTER_FIRE)) {
-            ShootShooter.instance.finish();
-        } else if(OI.whenReleased(OI.SHOOTER_RELOAD)) {
-            ReloadShooter.instance.finish();
+            if(FireAndReload.instance.state == Command.NOT_RUNNING) {
+                FireAndReload.instance.start();
+            }
         }
         
         if(OI.whenPressed(OI.FEEDER_INTAKE)) {
