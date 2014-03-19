@@ -38,9 +38,6 @@ public class Shooter extends Subsystem {
     public void setMotorPower(double value) {
         chooChooMotor.set(value);
     }
-    public double getEncoderDistance() {
-        return chooChooEncoder.getDistance();
-    }
     public boolean isAtTarget() {
         return chooChooPIDController.onTarget();
     }

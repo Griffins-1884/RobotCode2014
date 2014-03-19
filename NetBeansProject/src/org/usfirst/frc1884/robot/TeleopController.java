@@ -1,6 +1,8 @@
 package org.usfirst.frc1884.robot;
 
 import org.usfirst.frc1884.robot.commands.Command;
+import org.usfirst.frc1884.robot.commands.DriveShiftHigh;
+import org.usfirst.frc1884.robot.commands.DriveShiftLow;
 import org.usfirst.frc1884.robot.commands.DriveShiftSwitch;
 import org.usfirst.frc1884.robot.commands.ExtendFeeder;
 import org.usfirst.frc1884.robot.commands.FireAndReload;
@@ -18,10 +20,21 @@ public class TeleopController {
     }
     public static void periodic() {
         if(OI.whenPressed(OI.FLIP_DRIVE)) {
-            TeleopDrive.instance.flipDrive();
+            TeleopDrive.instance.toggleFlipDrive();
         }
+        if(OI.whenPressed(OI.KEEP_DRIVE_REVERSED)) {
+            TeleopDrive.instance.flipDrive(true);
+        } else if(OI.whenReleased(OI.KEEP_DRIVE_REVERSED)) {
+            TeleopDrive.instance.flipDrive(false);
+        }
+        
         if(OI.whenPressed(OI.SWITCH_GEAR)) {
             DriveShiftSwitch.instance.start();
+        }
+        if(OI.whenPressed(OI.LOW_GEAR)) {
+            DriveShiftLow.instance.start();
+        } else if(OI.whenReleased(OI.LOW_GEAR)) {
+            DriveShiftHigh.instance.start();
         }
         
         if(OI.whenPressed(OI.SHOOTER_FIRE)) {

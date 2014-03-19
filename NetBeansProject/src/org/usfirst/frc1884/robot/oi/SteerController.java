@@ -22,5 +22,7 @@ public class SteerController {
         OI.setBooleanValue(OI.SHOOTER_RELOAD, controller.getRightLowerTrigger());
         OI.setBooleanValue(OI.SWITCH_GEAR, controller.getLeftStick());
         OI.setBooleanValue(OI.FLIP_DRIVE, controller.getRightStick());
+        OI.setBooleanValue(OI.KEEP_DRIVE_REVERSED, controller.getLeftUpperTrigger());
+        OI.setBooleanValue(OI.LOW_GEAR, controller.getLeftLowerTrigger());
     }
 }
