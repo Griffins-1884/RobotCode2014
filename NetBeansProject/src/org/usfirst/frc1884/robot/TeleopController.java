@@ -57,10 +57,10 @@ public class TeleopController {
         }
         
         if(OI.whenPressed(OI.FEEDER_EXTEND)) {
-            if(Intake.instance.getExtenderActualState() == Intake.EXTENDER_RETRACT) {
-                ExtendFeeder.instance.start();
-            } else if(Intake.instance.getExtenderActualState() == Intake.EXTENDER_EXTEND) {
+            if(Intake.instance.getExtenderActualState() == Intake.EXTENDER_EXTEND) {
                 RetractFeeder.instance.start();
+            } else {
+                ExtendFeeder.instance.start();
             }
         }
     }
