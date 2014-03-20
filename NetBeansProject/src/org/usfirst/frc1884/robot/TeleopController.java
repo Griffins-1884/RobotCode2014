@@ -21,22 +21,9 @@ public class TeleopController {
         Shooter.instance.resetEncoder();
     }
     public static void periodic() {
-        if(OI.whenPressed(OI.FLIP_DRIVE)) {
-            TeleopDrive.instance.toggleFlipDrive();
-        }
-        if(OI.whenPressed(OI.KEEP_DRIVE_REVERSED)) {
-            TeleopDrive.instance.flipDrive(true);
-        } else if(OI.whenReleased(OI.KEEP_DRIVE_REVERSED)) {
-            TeleopDrive.instance.flipDrive(false);
-        }
         
         if(OI.whenPressed(OI.SWITCH_GEAR)) {
             DriveShiftSwitch.instance.start();
-        }
-        if(OI.whenPressed(OI.LOW_GEAR)) {
-            DriveShiftLow.instance.start();
-        } else if(OI.whenReleased(OI.LOW_GEAR)) {
-            DriveShiftHigh.instance.start();
         }
         
         if(OI.whenPressed(OI.SHOOTER_FIRE)) {

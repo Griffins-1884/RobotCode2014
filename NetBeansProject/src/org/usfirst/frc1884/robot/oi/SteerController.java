@@ -39,7 +39,7 @@ public class SteerController {
                                             //|| operatorController.getTriggerButton()
                           );
         
-        OI.setBooleanValue(OI.SWITCH_GEAR, driverController.getLeftStickButton());
+        OI.setBooleanValue(OI.SWITCH_GEAR, driverController.getLeftUpperTrigger());
         
         OI.setBooleanValue(OI.FLIP_DRIVE, driverController.getRightStickButton());
         
