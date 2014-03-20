@@ -22,8 +22,10 @@ public class TeleopController {
     }
     public static void periodic() {
         
-        if(OI.whenPressed(OI.SWITCH_GEAR)) {
-            DriveShiftSwitch.instance.start();
+        if(OI.whenPressed(OI.LOW_GEAR)) {
+            DriveShiftLow.instance.start();
+        } else if(OI.whenReleased(OI.LOW_GEAR)) {
+            DriveShiftHigh.instance.start();
         }
         
         if(OI.whenPressed(OI.SHOOTER_FIRE)) {
