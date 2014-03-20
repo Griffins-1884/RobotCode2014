@@ -12,11 +12,13 @@ import org.usfirst.frc1884.robot.commands.RetractFeeder;
 import org.usfirst.frc1884.robot.commands.TeleopDrive;
 import org.usfirst.frc1884.robot.oi.OI;
 import org.usfirst.frc1884.robot.subsystems.DriveTrain;
+import org.usfirst.frc1884.robot.subsystems.Shooter;
 
 public class TeleopController {
     public static void init() {
         TeleopDrive.instance.start();
         DriveTrain.instance.startCompressor();
+        Shooter.instance.resetEncoder();
     }
     public static void periodic() {
         if(OI.whenPressed(OI.FLIP_DRIVE)) {

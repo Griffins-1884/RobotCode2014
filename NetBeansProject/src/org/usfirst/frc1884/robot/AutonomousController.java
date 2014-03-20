@@ -7,6 +7,7 @@ public class AutonomousController {
     public static void init() {
         DriveTrain.instance.startCompressor();
         timeStarted = System.currentTimeMillis();
+        Shooter.instance.resetEncoder();
     }
     private static long timeStarted;
     public static void periodic() {
