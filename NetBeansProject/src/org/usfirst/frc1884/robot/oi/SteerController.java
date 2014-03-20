@@ -14,8 +14,7 @@ public class SteerController {
         /*                                Axes                                */
         /**********************************************************************/
         
-        double driverControlLevel = (operatorController.getThrottle() + 1) / 2;
-        System.out.println(driverControlLevel);
+        double driverControlLevel = 1.0; // If Doug should be able to take over, put: (operatorController.getThrottle() + 1) / 2;
         
         double forward = driverController.getLeftStickY() * driverControlLevel + operatorController.getStickY() * (1 - driverControlLevel);
         OI.setAnalogValue(OI.DRIVE_FORWARD, forward * forward * forward);
@@ -27,17 +26,18 @@ public class SteerController {
         /*                               Buttons                              */
         /**********************************************************************/
         
-        OI.setBooleanValue(OI.FEEDER_EXTEND, driverController.getActionBottom() ||
+        OI.setBooleanValue(OI.FEEDER_EXTEND, // If the driver should have these controls, uncomment these: driverController.getActionBottom() ||
                                              operatorController.getThumbLowerButton());
         
-        OI.setBooleanValue(OI.FEEDER_INTAKE, driverController.getActionLeft() ||
+        OI.setBooleanValue(OI.FEEDER_INTAKE, //driverController.getActionLeft() ||
                                              operatorController.getThumbMiddleLeftButton());
         
-        OI.setBooleanValue(OI.FEEDER_OUTTAKE, driverController.getActionRight() ||
+        OI.setBooleanValue(OI.FEEDER_OUTTAKE, //driverController.getActionRight() ||
                                               operatorController.getThumbMiddleRightButton());
         
-        OI.setBooleanValue(OI.SHOOTER_FIRE, driverController.getRightUpperTrigger() ||
-                                            operatorController.getTriggerButton());
+        OI.setBooleanValue(OI.SHOOTER_FIRE, driverController.getRightUpperTrigger()
+                                            //|| operatorController.getTriggerButton()
+                          );
         
         OI.setBooleanValue(OI.SWITCH_GEAR, driverController.getLeftStickButton());
         
