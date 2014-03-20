@@ -1,10 +1,10 @@
 package org.usfirst.frc1884.robot.oi;
 
-import org.usfirst.frc1884.util.input.controllers.Gamepad;
+import org.usfirst.frc1884.util.input.controllers.SemanticGamepad;
 import org.usfirst.frc1884.util.input.controllers.PS3Controller;
 
 public class TankController {
-    private static Gamepad controller = new PS3Controller(1);
+    private static SemanticGamepad controller = new PS3Controller(1);
     public static void poll() {
         double forward = (controller.getLeftStickY() + controller.getRightStickY()) / 2;
         OI.setAnalogValue(OI.DRIVE_FORWARD, forward * forward * forward);

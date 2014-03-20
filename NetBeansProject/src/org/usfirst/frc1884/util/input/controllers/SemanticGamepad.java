@@ -1,6 +1,6 @@
 package org.usfirst.frc1884.util.input.controllers;
 
-public interface Gamepad {
+public interface SemanticGamepad {
     public boolean getDpadUp();
     public boolean getDpadDown();
     public boolean getDpadRight();

@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  *
  * http://www.chiefdelphi.com/forums/showpost.php?p=1003245&postcount=8
  */
-public class XboxController extends Joystick implements Gamepad {
+public class XboxController extends Joystick implements SemanticGamepad {
 
     /**
      * These are constants to control the inversion of the controller

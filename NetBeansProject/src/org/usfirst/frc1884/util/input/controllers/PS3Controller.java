@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  *
  * Jonathan Wang knows the constants
  */
-public class PS3Controller extends Joystick implements Gamepad {
+public class PS3Controller extends Joystick implements SemanticGamepad {
 
     /**
      * These are constants to control the inversion of the controller
