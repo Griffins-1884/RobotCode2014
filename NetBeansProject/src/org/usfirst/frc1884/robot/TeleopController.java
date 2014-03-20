@@ -1,5 +1,6 @@
 package org.usfirst.frc1884.robot;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc1884.robot.commands.Command;
 import org.usfirst.frc1884.robot.commands.DriveShiftHigh;
 import org.usfirst.frc1884.robot.commands.DriveShiftLow;
@@ -21,6 +22,8 @@ public class TeleopController {
         Shooter.instance.resetEncoder();
     }
     public static void periodic() {
+        
+        //Run Commands
         
         if(OI.whenPressed(OI.LOW_GEAR)) {
             DriveShiftLow.instance.start();
@@ -51,5 +54,10 @@ public class TeleopController {
                 ExtendFeeder.instance.start();
             }
         }
+        
+        //Send data to driver
+        
+        SmartDashboard.putData("Left Motor Power", null);
+        
     }
 }
