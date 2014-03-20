@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  *
  * Jonathan Wang knows the constants
  */
-public class PS3Controller extends Joystick {
+public class PS3Controller extends Joystick implements Gamepad {
 
     /**
      * These are constants to control the inversion of the controller
@@ -48,7 +48,7 @@ public class PS3Controller extends Joystick {
      *
      * @return The value of this axis
      */
-    public double getLeftY() {
+    public double getLeftStickY() {
         return removeDrift(getRawAxis(2)) * UP;
     }
 
@@ -57,7 +57,7 @@ public class PS3Controller extends Joystick {
      *
      * @return The value of this axis
      */
-    public double getLeftX() {
+    public double getLeftStickX() {
         return removeDrift(getRawAxis(1)) * RIGHT;
     }
 
@@ -66,7 +66,7 @@ public class PS3Controller extends Joystick {
      *
      * @return The value of this axis
      */
-    public double getRightX() {
+    public double getRightStickX() {
         return removeDrift(getRawAxis(3)) * RIGHT;
     }
 
@@ -75,7 +75,7 @@ public class PS3Controller extends Joystick {
      *
      * @return The value of this axis
      */
-    public double getRightY() {
+    public double getRightStickY() {
         return removeDrift(getRawAxis(6)) * UP;
     }
 
@@ -104,7 +104,7 @@ public class PS3Controller extends Joystick {
      *
      * @return The value of this button
      */
-    public boolean getButtonTriangle() {
+    public boolean getActionTop() {
         return getRawButton(1);
     }
     public final JoystickButton TRIANGLE_BUTTON = new JoystickButton(this, 1);
@@ -114,7 +114,7 @@ public class PS3Controller extends Joystick {
      *
      * @return The value of this button
      */
-    public boolean getButtonCircle() {
+    public boolean getActionRight() {
         return getRawButton(2);
     }
     public final JoystickButton CIRCLE_BUTTON = new JoystickButton(this, 2);
@@ -124,7 +124,7 @@ public class PS3Controller extends Joystick {
      *
      * @return The value of this button
      */
-    public boolean getButtonCross() {
+    public boolean getActionBottom() {
         return getRawButton(3);
     }
     public final JoystickButton CROSS_BUTTON = new JoystickButton(this, 3);
@@ -134,7 +134,7 @@ public class PS3Controller extends Joystick {
      *
      * @return The value of this button
      */
-    public boolean getButtonSquare() {
+    public boolean getActionLeft() {
         return getRawButton(4);
     }
     public final JoystickButton SQUARE_BUTTON = new JoystickButton(this, 4);
@@ -194,7 +194,7 @@ public class PS3Controller extends Joystick {
      *
      * @return The value of this button
      */
-    public boolean getLeftStick() {
+    public boolean getLeftStickButton() {
         return getRawButton(10);
     }
     public final JoystickButton LEFT_STICK_BUTTON = new JoystickButton(this, 10);
@@ -204,7 +204,7 @@ public class PS3Controller extends Joystick {
      *
      * @return The value of this button
      */
-    public boolean getRightStick() {
+    public boolean getRightStickButton() {
         return getRawButton(11);
     }
     public final JoystickButton RIGHT_STICK_BUTTON = new JoystickButton(this, 11);

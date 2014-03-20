@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  *
  * http://www.chiefdelphi.com/forums/showpost.php?p=1003245&postcount=8
  */
-public class XboxController extends Joystick {
+public class XboxController extends Joystick implements Gamepad {
 
     /**
      * These are constants to control the inversion of the controller
@@ -49,7 +49,7 @@ public class XboxController extends Joystick {
      *
      * @return The value of this axis
      */
-    public double getLeftY() {
+    public double getLeftStickY() {
         return removeDrift(getRawAxis(2)) * UP;
     }
 
@@ -58,7 +58,7 @@ public class XboxController extends Joystick {
      *
      * @return The value of this axis
      */
-    public double getLeftX() {
+    public double getLeftStickX() {
         return removeDrift(getRawAxis(1)) * RIGHT;
     }
 
@@ -67,7 +67,7 @@ public class XboxController extends Joystick {
      *
      * @return The value of this axis
      */
-    public double getRightX() {
+    public double getRightStickX() {
         return removeDrift(getRawAxis(4)) * RIGHT;
     }
 
@@ -76,7 +76,7 @@ public class XboxController extends Joystick {
      *
      * @return The value of this axis
      */
-    public double getRightY() {
+    public double getRightStickY() {
         return removeDrift(getRawAxis(5)) * UP;
     }
 
@@ -100,6 +100,7 @@ public class XboxController extends Joystick {
     public boolean getLeftLowerTrigger() {
         return (removeDrift(getRawAxis(3)) > 0.5);
     }
+    
     private static class LeftLowerTriggerButton extends Button {private XboxController controller; public LeftLowerTriggerButton(XboxController controller) {this.controller = controller;} public boolean get() {return controller.getLeftLowerTrigger();}}
     public final Button LEFT_LOWER_TRIGGER_BUTTON = new LeftLowerTriggerButton(this);
 
@@ -120,7 +121,7 @@ public class XboxController extends Joystick {
      *
      * @return The value of this button
      */
-    public boolean getButtonA() {
+    public boolean getActionBottom() {
         return getRawButton(1);
     }
     public final JoystickButton A_BUTTON = new JoystickButton(this, 1);
@@ -130,7 +131,7 @@ public class XboxController extends Joystick {
      *
      * @return The value of this button
      */
-    public boolean getButtonB() {
+    public boolean getActionRight() {
         return getRawButton(2);
     }
     public final JoystickButton B_BUTTON = new JoystickButton(this, 2);
@@ -140,7 +141,7 @@ public class XboxController extends Joystick {
      *
      * @return The value of this button
      */
-    public boolean getButtonX() {
+    public boolean getActionLeft() {
         return getRawButton(3);
     }
     public final JoystickButton X_BUTTON = new JoystickButton(this, 3);
@@ -150,7 +151,7 @@ public class XboxController extends Joystick {
      *
      * @return The value of this button
      */
-    public boolean getButtonY() {
+    public boolean getActionTop() {
         return getRawButton(4);
     }
     public final JoystickButton Y_BUTTON = new JoystickButton(this, 4);
@@ -200,7 +201,7 @@ public class XboxController extends Joystick {
      *
      * @return The value of this button
      */
-    public boolean getLeftStick() {
+    public boolean getLeftStickButton() {
         return getRawButton(9);
     }
     public final JoystickButton LEFT_STICK_BUTTON = new JoystickButton(this, 9);
@@ -210,7 +211,7 @@ public class XboxController extends Joystick {
      *
      * @return The value of this button
      */
-    public boolean getRightStick() {
+    public boolean getRightStickButton() {
         return getRawButton(10);
     }
     public final JoystickButton RIGHT_STICK_BUTTON = new JoystickButton(this, 10);
@@ -236,4 +237,7 @@ public class XboxController extends Joystick {
     }
     private static class DPadLeftButton extends Button {private XboxController controller; public DPadLeftButton(XboxController controller) {this.controller = controller;} public boolean get() {return controller.getDpadLeft();}}
     public final Button DPAD_LEFT_BUTTON = new DPadLeftButton(this);
+    
+    public boolean getDpadUp() {return false;}
+    public boolean getDpadDown() {return false;}
 }
