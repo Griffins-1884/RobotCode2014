@@ -12,6 +12,7 @@ import org.usfirst.frc1884.robot.commands.RetractFeeder;
 import org.usfirst.frc1884.robot.commands.TeleopDrive;
 import org.usfirst.frc1884.robot.oi.OI;
 import org.usfirst.frc1884.robot.subsystems.DriveTrain;
+import org.usfirst.frc1884.robot.subsystems.Intake;
 import org.usfirst.frc1884.robot.subsystems.Shooter;
 
 public class TeleopController {
@@ -56,9 +57,11 @@ public class TeleopController {
         }
         
         if(OI.whenPressed(OI.FEEDER_EXTEND)) {
-            ExtendFeeder.instance.start();
-        } else if(OI.whenReleased(OI.FEEDER_EXTEND)) {
-            RetractFeeder.instance.start();
+            if(Intake.instance.getExtenderActualState() == Intake.EXTENDER_RETRACT) {
+                ExtendFeeder.instance.start();
+            } else if(Intake.instance.getExtenderActualState() == Intake.EXTENDER_EXTEND) {
+                RetractFeeder.instance.start();
+            }
         }
     }
 }

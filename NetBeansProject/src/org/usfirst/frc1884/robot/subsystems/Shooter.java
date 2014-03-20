@@ -1,6 +1,7 @@
 package org.usfirst.frc1884.robot.subsystems;
 
 import edu.wpi.first.wpilibj.*;
+import org.usfirst.frc1884.robot.commands.FireAndReload;
 import org.usfirst.frc1884.util.parameters.DoubleParameter;
 
 import org.usfirst.frc1884.util.pid.PIDEncoderTalonController;
@@ -42,6 +43,7 @@ public class Shooter extends Subsystem {
         return chooChooPIDController.onTarget();
     }
     public void resetEncoder() {
+        this.setGoalPoint(0.0);
         chooChooEncoder.reset();
     }
     
@@ -51,7 +53,6 @@ public class Shooter extends Subsystem {
                             i = DoubleParameter.get("Shooter/I"),
                             d = DoubleParameter.get("Shooter/D"); 
     public void parameterRefresh() {
-        System.out.println("P is " + p.getValue());
         chooChooPIDController.setPID(p.getValue(), i.getValue(), d.getValue());
     }
 }
