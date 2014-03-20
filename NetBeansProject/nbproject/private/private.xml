@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>src/org/usfirst/frc1884/robot/TeleopController.java</url>
+            <bookmark id="1">
+                <name/>
+                <line>33</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/colinpoler/Documents/GitHub/RobotCode2014/NetBeansProject/src/org/usfirst/frc1884/robot/oi/OI.java</file>
-            <file>file:/C:/Users/colinpoler/Documents/GitHub/RobotCode2014/NetBeansProject/src/org/usfirst/frc1884/robot/subsystems/DriveTrain.java</file>
-            <file>file:/C:/Users/colinpoler/Documents/GitHub/RobotCode2014/NetBeansProject/src/org/usfirst/frc1884/robot/TeleopController.java</file>
-            <file>file:/C:/Users/colinpoler/Documents/GitHub/RobotCode2014/NetBeansProject/src/org/usfirst/frc1884/robot/oi/SteerController.java</file>
-            <file>file:/C:/Users/colinpoler/Documents/GitHub/RobotCode2014/NetBeansProject/src/org/usfirst/frc1884/robot/commands/TeleopDrive.java</file>
+            <file>file:/C:/Users/colinpoler/Documents/GitHub/RobotCode2014/NetBeansProject/src/org/usfirst/frc1884/robot/commands/FireAndReload.java</file>
+            <file>file:/C:/Users/colinpoler/Documents/GitHub/RobotCode2014/NetBeansProject/src/org/usfirst/frc1884/robot/subsystems/Shooter.java</file>
         </group>
     </open-files>
 </project-private>

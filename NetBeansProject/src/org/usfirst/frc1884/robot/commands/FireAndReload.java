@@ -9,7 +9,7 @@ public class FireAndReload extends Command {
         Commands.registerCommand(instance);
     }
     void internalStart() {
-        Shooter.instance.setGoalPoint(Shooter.instance.getGoalPoint() + 360.0);
+        Shooter.instance.setGoalPoint(Shooter.instance.getGoalPoint() - 360.0);
     }
     void internalRun() {
         if(Shooter.instance.isAtTarget()) {

@@ -19,7 +19,7 @@ public class TeleopDrive extends Command {
         DriveTrain.instance.setLeftSidePower(Math.max(Math.min(leftValue, 1.0), -1.0));
         DriveTrain.instance.setRightSidePower(Math.max(Math.min(rightValue, 1.0), -1.0));
     }
-    int forwardMultiplier = -1;
+    int forwardMultiplier = 1;
     public void toggleFlipDrive() {
         forwardMultiplier *= -1;
     }

@@ -22,7 +22,6 @@ public class Shooter extends Subsystem {
         chooChooEncoder = new Encoder(1, 7, 1, 8);
         chooChooEncoder.setDistancePerPulse(360.0/250.0);
         chooChooEncoder.start();
-        chooChooEncoder.setReverseDirection(true);
         chooChooPIDController = new PIDEncoderTalonController(1.0, 0.0, 0.0, chooChooEncoder, chooChooMotor);
         chooChooPIDController.setAbsoluteTolerance(0.2);
         chooChooPIDController.setSetpoint(goalPoint);
