@@ -6,33 +6,33 @@ import org.usfirst.frc1884.robot.subsystems.Shooter;
 
 public class AutonomousController {
 
-    private static final int LOW_GOAL = 0;
-    private static final int HIGH_GOAL = 1;
-    private static final int FIVE_PT = 2;
+    protected static final int LOW_GOAL = 0;
+    protected static final int HIGH_GOAL = 1;
+    protected static final int FIVE_PT = 2;
 
     public static void init() {
         DriveTrain.instance.startCompressor();
         timeStarted = System.currentTimeMillis();
         Shooter.instance.resetEncoder();
     }
+    
+    private static int mode;
+    
+    protected static void setAutoMode(int mode1) {
+        mode = mode1;
+    }
+    
     private static long timeStarted;
 
     public static void periodic() {
-
-        //Get current choice
-        int choice = (int) SmartDashboard.getNumber(null, 3);
-
-        //Send current choice
-        SmartDashboard.putString("Low Goal: " + LOW_GOAL + " High Goal: " + HIGH_GOAL + " Five Point Auto: " + FIVE_PT, " Current Point: " + choice);
-
         //Get time since start
         long timeSinceStart = System.currentTimeMillis() - timeStarted;
 
-        if (choice == LOW_GOAL) {//If low goal is picked
+        if (mode == LOW_GOAL) {//If low goal is picked
             lowGoalAuto(timeSinceStart);
-        } else if (choice == HIGH_GOAL) {//If high goal is picked
+        } else if (mode == HIGH_GOAL) {//If high goal is picked
             highGoalAuto(timeSinceStart);
-        } else if (choice == FIVE_PT) {//If five point auto is picked
+        } else if (mode == FIVE_PT) {//If five point auto is picked
             fivePointAuto(timeSinceStart);
         }
     }
