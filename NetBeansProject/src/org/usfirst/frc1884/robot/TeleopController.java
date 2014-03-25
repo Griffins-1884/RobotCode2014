@@ -1,10 +1,8 @@
 package org.usfirst.frc1884.robot;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc1884.robot.commands.Command;
 import org.usfirst.frc1884.robot.commands.DriveShiftHigh;
 import org.usfirst.frc1884.robot.commands.DriveShiftLow;
-import org.usfirst.frc1884.robot.commands.DriveShiftSwitch;
 import org.usfirst.frc1884.robot.commands.ExtendFeeder;
 import org.usfirst.frc1884.robot.commands.FireAndReload;
 import org.usfirst.frc1884.robot.commands.IntakeFeeder;
@@ -12,7 +10,6 @@ import org.usfirst.frc1884.robot.commands.OuttakeFeeder;
 import org.usfirst.frc1884.robot.commands.RetractFeeder;
 import org.usfirst.frc1884.robot.commands.TeleopDrive;
 import org.usfirst.frc1884.robot.oi.OI;
-import org.usfirst.frc1884.robot.subsystems.DriveTrain;
 import org.usfirst.frc1884.robot.subsystems.Intake;
 import org.usfirst.frc1884.robot.subsystems.Shooter;
 
@@ -54,10 +51,6 @@ public class TeleopController {
                 ExtendFeeder.instance.start();
             }
         }
-        
-        //Send data to driver
-        
-        SmartDashboard.putData("Left Motor Power", null);
         
     }
 }

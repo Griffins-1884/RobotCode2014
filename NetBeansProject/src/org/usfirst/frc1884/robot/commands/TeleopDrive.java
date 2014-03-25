@@ -16,8 +16,10 @@ public class TeleopDrive extends Command {
                counterclockwise = OI.getAnalogValue(OI.DRIVE_COUNTERCLOCKWISE);
         double leftValue = forward - counterclockwise,
                rightValue = -forward - counterclockwise;
+        
         DriveTrain.instance.setLeftSidePower(Math.max(Math.min(leftValue, 1.0), -1.0));
         DriveTrain.instance.setRightSidePower(Math.max(Math.min(rightValue, 1.0), -1.0));
+        
         if(Math.abs(leftValue) + Math.abs(rightValue) > 1) {
             DriveTrain.instance.stopCompressor();
         } else {
