@@ -5,7 +5,6 @@ import org.usfirst.frc1884.robot.commands.DriveShiftHigh;
 import org.usfirst.frc1884.robot.commands.DriveShiftLow;
 import org.usfirst.frc1884.robot.commands.ExtendFeeder;
 import org.usfirst.frc1884.robot.commands.FireAndReload;
-import org.usfirst.frc1884.robot.commands.FireAndReloadWithLimitSwitch;
 import org.usfirst.frc1884.robot.commands.IntakeFeeder;
 import org.usfirst.frc1884.robot.commands.OuttakeFeeder;
 import org.usfirst.frc1884.robot.commands.RetractFeeder;
@@ -19,7 +18,6 @@ public class TeleopController {
         TeleopDrive.instance.start();
         Shooter.instance.resetEncoder();
     }
-    public static boolean encoderBroken = false;
     public static void periodic() {
         
         //Run Commands
@@ -31,16 +29,8 @@ public class TeleopController {
         }
         
         if(OI.whenPressed(OI.SHOOTER_FIRE)) {
-            if(!encoderBroken) {
-                FireAndReloadWithLimitSwitch.instance.finish();
-                if(FireAndReload.instance.state == Command.NOT_RUNNING) {
-                    FireAndReload.instance.start();
-                }
-            } else {
-                FireAndReload.instance.finish();
-                if(FireAndReloadWithLimitSwitch.instance.state == Command.NOT_RUNNING) {
-                    FireAndReloadWithLimitSwitch.instance.start();
-                }
+            if(FireAndReload.instance.state == Command.NOT_RUNNING) {
+                FireAndReload.instance.start();
             }
         }
         

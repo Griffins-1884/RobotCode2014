@@ -105,10 +105,6 @@ Wiring Table
         <td>Pressure switch</td>
     </tr>
     <tr>
-        <td>5</td>
-        <td>Choo choo limit switch</td>
-    </tr>
-    <tr>
         <td>7</td>
         <td>Choo choo Encoder A Channel</td>
     </tr>
