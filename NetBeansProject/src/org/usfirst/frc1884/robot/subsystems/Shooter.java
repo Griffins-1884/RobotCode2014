@@ -16,6 +16,7 @@ public class Shooter extends Subsystem {
     private Talon chooChooMotor;
     private Encoder chooChooEncoder;
     private PIDController chooChooPIDController;
+    private DigitalInput chooChooLimitSwitch;
     
     private double goalPoint = 0.0;
     
@@ -27,6 +28,7 @@ public class Shooter extends Subsystem {
         chooChooPIDController = new PIDEncoderTalonController(0.1, 0.0, 0.2, chooChooEncoder, chooChooMotor);
         chooChooPIDController.setAbsoluteTolerance(0.2);
         chooChooPIDController.setSetpoint(goalPoint);
+        chooChooLimitSwitch = new DigitalInput(5);
     }
     
     public double getGoalPoint() {
@@ -44,6 +46,16 @@ public class Shooter extends Subsystem {
     }
     public boolean isAtTarget() {
         return chooChooPIDController.onTarget();
+    }
+    public boolean isLimitSwitchPressed() {
+        return !chooChooLimitSwitch.get(); // TODO assuming it is high when open
+    }
+    public void setPIDEnabled(boolean enabled) {
+        if(enabled) {
+            chooChooPIDController.enable();
+        } else {
+            chooChooPIDController.disable();
+        }
     }
     public void resetEncoder() {
         this.setGoalPoint(0.0);
