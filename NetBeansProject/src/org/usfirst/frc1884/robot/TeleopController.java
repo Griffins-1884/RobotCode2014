@@ -45,11 +45,9 @@ public class TeleopController {
         }
         
         if(OI.whenPressed(OI.FEEDER_EXTEND)) {
-            if(Intake.instance.getExtenderActualState() == Intake.EXTENDER_EXTEND) {
-                RetractFeeder.instance.start();
-            } else {
-                ExtendFeeder.instance.start();
-            }
+            ExtendFeeder.instance.start();
+        } else if(OI.whenReleased(OI.FEEDER_EXTEND)) {
+            RetractFeeder.instance.start();
         }
         
     }
