@@ -13,7 +13,7 @@ public class AutonomousController {
     public static void init() {
         DriveTrain.instance.startCompressor();
         timeStarted = System.currentTimeMillis();
-        Shooter.instance.resetEncoder();
+//        Shooter.instance.resetEncoder();
     }
     
     private static int mode;

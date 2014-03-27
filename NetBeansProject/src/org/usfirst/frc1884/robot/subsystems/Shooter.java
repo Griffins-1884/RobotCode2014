@@ -16,17 +16,19 @@ public class Shooter extends Subsystem {
     private Talon chooChooMotor;
     private Encoder chooChooEncoder;
     private PIDController chooChooPIDController;
+    private DigitalInput chooChooLimitSwitch;
     
     private double goalPoint = 0.0;
     
     private Shooter() {
         chooChooMotor = new Talon(1, 5);
-        chooChooEncoder = new Encoder(1, 7, 1, 8);
-        chooChooEncoder.setDistancePerPulse(360.0/250.0);
-        chooChooEncoder.start();
-        chooChooPIDController = new PIDEncoderTalonController(0.1, 0.0, 0.2, chooChooEncoder, chooChooMotor);
-        chooChooPIDController.setAbsoluteTolerance(0.2);
-        chooChooPIDController.setSetpoint(goalPoint);
+//        chooChooEncoder = new Encoder(1, 7, 1, 8);
+//        chooChooEncoder.setDistancePerPulse(360.0/250.0);
+//        chooChooEncoder.start();
+//        chooChooPIDController = new PIDEncoderTalonController(0.1, 0.0, 0.2, chooChooEncoder, chooChooMotor);
+//        chooChooPIDController.setAbsoluteTolerance(0.2);
+//        chooChooPIDController.setSetpoint(goalPoint);
+        chooChooLimitSwitch = new DigitalInput(6);
     }
     
     public double getGoalPoint() {
@@ -45,6 +47,9 @@ public class Shooter extends Subsystem {
     public boolean isAtTarget() {
         return chooChooPIDController.onTarget();
     }
+    public boolean isLimitSwitchPressed() {
+        return !chooChooLimitSwitch.get();
+    }
     public void resetEncoder() {
         this.setGoalPoint(0.0);
         chooChooEncoder.reset();
@@ -56,6 +61,6 @@ public class Shooter extends Subsystem {
                             i = DoubleParameter.get("Shooter/I"),
                             d = DoubleParameter.get("Shooter/D"); 
     public void parameterRefresh() {
-        chooChooPIDController.setPID(p.getValue(), i.getValue(), d.getValue());
+//        chooChooPIDController.setPID(p.getValue(), i.getValue(), d.getValue());
     }
 }
