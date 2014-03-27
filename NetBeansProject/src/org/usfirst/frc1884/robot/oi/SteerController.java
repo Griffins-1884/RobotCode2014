@@ -27,7 +27,7 @@ public class SteerController {
         /**********************************************************************/
         
         OI.setBooleanValue(OI.FEEDER_EXTEND, // If the driver should have these controls, uncomment these: driverController.getActionBottom() ||
-                                             operatorController.getThumbLowerButton());
+                                             operatorController.getTriggerButton());
         
         OI.setBooleanValue(OI.FEEDER_INTAKE, //driverController.getActionLeft() ||
                                              operatorController.getThumbMiddleLeftButton());
