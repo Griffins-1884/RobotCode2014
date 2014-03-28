@@ -2,6 +2,7 @@ package org.usfirst.frc1884.robot;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc1884.robot.commands.DriveCommand;
 import org.usfirst.frc1884.robot.commands.OuttakeFeeder;
 import org.usfirst.frc1884.robot.subsystems.DriveTrain;
 import org.usfirst.frc1884.robot.subsystems.Shooter;
@@ -58,11 +59,9 @@ public class AutonomousController {
     private static void lowGoalAuto(long timeSinceStart) {
         SmartDashboard.putString("mode", "lowgoal");
         if (timeSinceStart <= lowGoalAutoMoveTime.getValue()) {
-            DriveTrain.instance.setRightSidePower(-1.0);
-            DriveTrain.instance.setLeftSidePower(1.0);
+            DriveCommand.drivePolar(1.0, 0.0);
         } else if(!lowGoalAutoHasShot) {
-            DriveTrain.instance.setRightSidePower(0.0);
-            DriveTrain.instance.setLeftSidePower(0.0);
+            DriveCommand.drivePolar(0.0, 0.0);
             
             // Start ball outtake
             lowGoalAutoHasShot = true;
@@ -76,11 +75,9 @@ public class AutonomousController {
     private static void highGoalAuto(long timeSinceStart) {
         SmartDashboard.putString("mode", "highgoal");
         if (timeSinceStart <= highGoalAutoMoveTime.getValue()) {
-            DriveTrain.instance.setRightSidePower(1.0);
-            DriveTrain.instance.setLeftSidePower(-1.0);
+            DriveCommand.drivePolar(-1.0, 0.0);
         } else if(!highGoalAutoHasShot) {
-            DriveTrain.instance.setRightSidePower(0.0);
-            DriveTrain.instance.setLeftSidePower(0.0);
+            DriveCommand.drivePolar(0.0, 0.0);
             
             // Shoot ball
             highGoalAutoHasShot = true;
@@ -93,11 +90,9 @@ public class AutonomousController {
     private static void fivePointAuto(long timeSinceStart) {
         SmartDashboard.putString("mode", "fivepoint");
         if (timeSinceStart <= fivePointAutoMoveTime.getValue()) {
-            DriveTrain.instance.setRightSidePower(1.0);
-            DriveTrain.instance.setLeftSidePower(-1.0);
+            DriveCommand.drivePolar(1.0, 0.0);
         } else {
-            DriveTrain.instance.setRightSidePower(0.0);
-            DriveTrain.instance.setLeftSidePower(0.0);
+            DriveCommand.drivePolar(0.0, 0.0);
         }
     }
 

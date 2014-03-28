@@ -8,7 +8,7 @@ import org.usfirst.frc1884.robot.commands.FireAndReload;
 import org.usfirst.frc1884.robot.commands.IntakeFeeder;
 import org.usfirst.frc1884.robot.commands.OuttakeFeeder;
 import org.usfirst.frc1884.robot.commands.RetractFeeder;
-import org.usfirst.frc1884.robot.commands.TeleopDrive;
+import org.usfirst.frc1884.robot.commands.DriveCommand;
 import org.usfirst.frc1884.robot.oi.OI;
 import org.usfirst.frc1884.robot.subsystems.Shooter;
 
@@ -16,12 +16,12 @@ public class TeleopController {
     public static void preinit() {
     }
     public static void init() {
-        TeleopDrive.instance.start();
         Shooter.instance.resetEncoder();
     }
     public static void periodic() {
-        
         //Run Commands
+        
+        DriveCommand.drivePolar(OI.getAnalogValue(OI.DRIVE_FORWARD), OI.getAnalogValue(OI.DRIVE_COUNTERCLOCKWISE));
         
         if(OI.whenPressed(OI.LOW_GEAR)) {
             DriveShiftLow.instance.start();
