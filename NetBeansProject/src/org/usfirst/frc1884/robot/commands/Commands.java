@@ -13,4 +13,10 @@ public class Commands {
             c.execute();
         }
     }
+    public static void finishAllCommands() {
+        for(int i = 0; i < commands.size(); i++) {
+            Command c = (Command) commands.elementAt(i);
+            c.finish();
+        }
+    }
 }

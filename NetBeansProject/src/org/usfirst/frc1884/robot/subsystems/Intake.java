@@ -54,6 +54,9 @@ public class Intake extends Subsystem {
             setExtenderState(EXTENDER_OFF);
         }
     }
+    public void disable() {
+        this.setIntakePower(0.0);
+    }
     public void parameterRefresh() {
     }
 }

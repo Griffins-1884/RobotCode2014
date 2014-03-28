@@ -1,20 +1,31 @@
 package org.usfirst.frc1884.robot;
 
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc1884.robot.commands.FireAndReload;
 import org.usfirst.frc1884.robot.commands.OuttakeFeeder;
 import org.usfirst.frc1884.robot.subsystems.DriveTrain;
 import org.usfirst.frc1884.robot.subsystems.Shooter;
-import org.usfirst.frc1884.util.parameters.DoubleParameter;
 import org.usfirst.frc1884.util.parameters.IntegerParameter;
 
 public class AutonomousController {
+    private static final int LOW_GOAL = 0;
+    private static final int HIGH_GOAL = 1;
+    private static final int FIVE_PT = 2;
 
-    protected static final int LOW_GOAL = 0;
-    protected static final int HIGH_GOAL = 1;
-    protected static final int FIVE_PT = 2;
-
+    private static SendableChooser autoChooser;
+    
+    public static void preinit() {
+        autoChooser = new SendableChooser();
+        autoChooser.addDefault("Five Point Auto", ""+AutonomousController.FIVE_PT);
+        autoChooser.addObject("High Goal Auto", ""+AutonomousController.HIGH_GOAL);
+        autoChooser.addObject("Low Goal Auto", ""+AutonomousController.LOW_GOAL);
+        SmartDashboard.putData("Auto Chooser", autoChooser);
+    }
+    
     public static void init() {
+        int choice = Integer.parseInt((String) autoChooser.getSelected());
+        setAutoMode(choice);
+        
         DriveTrain.instance.startCompressor();
         timeStarted = System.currentTimeMillis();
         Shooter.instance.resetEncoder();

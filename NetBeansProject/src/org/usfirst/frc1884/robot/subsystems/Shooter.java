@@ -1,7 +1,6 @@
 package org.usfirst.frc1884.robot.subsystems;
 
 import edu.wpi.first.wpilibj.*;
-import org.usfirst.frc1884.robot.commands.FireAndReload;
 import org.usfirst.frc1884.util.parameters.DoubleParameter;
 
 import org.usfirst.frc1884.util.pid.PIDEncoderTalonController;
@@ -51,6 +50,9 @@ public class Shooter extends Subsystem {
     }
     
     public void alwaysRun() {
+    }
+    public void disable() {
+        this.setMotorPower(0.0);
     }
     private DoubleParameter p = DoubleParameter.get("Shooter/P"),
                             i = DoubleParameter.get("Shooter/I"),

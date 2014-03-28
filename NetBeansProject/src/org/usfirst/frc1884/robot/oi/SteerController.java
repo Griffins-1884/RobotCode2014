@@ -2,7 +2,6 @@ package org.usfirst.frc1884.robot.oi;
 
 import org.usfirst.frc1884.util.input.controllers.CyborgJoystick;
 import org.usfirst.frc1884.util.input.controllers.SemanticGamepad;
-import org.usfirst.frc1884.util.input.controllers.PS3Controller;
 import org.usfirst.frc1884.util.input.controllers.SemanticJoystick;
 import org.usfirst.frc1884.util.input.controllers.XboxController;
 

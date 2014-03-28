@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Shooter/P",
+		"type": "double",
+        "value": 0.1
+    },
+    {
+        "name": "Shooter/I",
+		"type": "double",
+        "value": 0.0
+    },
+    {
+        "name": "Shooter/D",
+		"type": "double",
+        "value": 0.2
+    },
+    {
+        "name": "Auto/fivepoint_drive_time",
+		"type": "integer",
+        "value": 800
+    },
+    {
+        "name": "Auto/highgoal_drive_time",
+		"type": "integer",
+        "value": 2000
+    },
+    {
+        "name": "Auto/lowgoal_drive_time",
+		"type": "integer",
+        "value": 2000
+    }
+]

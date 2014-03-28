@@ -10,10 +10,11 @@ import org.usfirst.frc1884.robot.commands.OuttakeFeeder;
 import org.usfirst.frc1884.robot.commands.RetractFeeder;
 import org.usfirst.frc1884.robot.commands.TeleopDrive;
 import org.usfirst.frc1884.robot.oi.OI;
-import org.usfirst.frc1884.robot.subsystems.Intake;
 import org.usfirst.frc1884.robot.subsystems.Shooter;
 
 public class TeleopController {
+    public static void preinit() {
+    }
     public static void init() {
         TeleopDrive.instance.start();
         Shooter.instance.resetEncoder();
