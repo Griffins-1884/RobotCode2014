@@ -5,6 +5,8 @@ import org.usfirst.frc1884.robot.commands.FireAndReload;
 import org.usfirst.frc1884.robot.commands.OuttakeFeeder;
 import org.usfirst.frc1884.robot.subsystems.DriveTrain;
 import org.usfirst.frc1884.robot.subsystems.Shooter;
+import org.usfirst.frc1884.util.parameters.DoubleParameter;
+import org.usfirst.frc1884.util.parameters.IntegerParameter;
 
 public class AutonomousController {
 
@@ -38,15 +40,16 @@ public class AutonomousController {
             fivePointAuto(timeSinceStart);
         }
     }
-
-    private static long lowGoalAutoMoveTime = 5000;
+    
+    private static IntegerParameter lowGoalAutoMoveTime = IntegerParameter.get("Auto/lowgoal_drive_time");
     private static boolean lowGoalAutoHasShot = false;
 
     private static void lowGoalAuto(long timeSinceStart) {
-        if (timeSinceStart <= lowGoalAutoMoveTime) {
-            DriveTrain.instance.setRightSidePower(1.0);
-            DriveTrain.instance.setLeftSidePower(-1.0);
-        } else if (timeSinceStart > lowGoalAutoMoveTime && !lowGoalAutoHasShot) {
+        SmartDashboard.putString("mode", "lowgoal");
+        if (timeSinceStart <= lowGoalAutoMoveTime.getValue()) {
+            DriveTrain.instance.setRightSidePower(-1.0);
+            DriveTrain.instance.setLeftSidePower(1.0);
+        } else if(!lowGoalAutoHasShot) {
             DriveTrain.instance.setRightSidePower(0.0);
             DriveTrain.instance.setLeftSidePower(0.0);
             
@@ -55,31 +58,33 @@ public class AutonomousController {
             OuttakeFeeder.instance.start();
         }
     }
-
-    private static long highGoalAutoMoveTime = 5000;
+    
+    private static IntegerParameter highGoalAutoMoveTime = IntegerParameter.get("Auto/highgoal_drive_time");
     private static boolean highGoalAutoHasShot = false;
 
     private static void highGoalAuto(long timeSinceStart) {
-        if (timeSinceStart <= highGoalAutoMoveTime) {
-            DriveTrain.instance.setRightSidePower(-1.0);
-            DriveTrain.instance.setLeftSidePower(1.0);
-        } else if (timeSinceStart > highGoalAutoMoveTime && !highGoalAutoHasShot) {
+        SmartDashboard.putString("mode", "highgoal");
+        if (timeSinceStart <= highGoalAutoMoveTime.getValue()) {
+            DriveTrain.instance.setRightSidePower(1.0);
+            DriveTrain.instance.setLeftSidePower(-1.0);
+        } else if(!highGoalAutoHasShot) {
             DriveTrain.instance.setRightSidePower(0.0);
             DriveTrain.instance.setLeftSidePower(0.0);
             
             // Shoot ball
             highGoalAutoHasShot = true;
-            FireAndReload.instance.start();
+//            FireAndReload.instance.start();
         }
     }
 
-    private static long fivePointAutoMoveTime = 5000;
+    private static IntegerParameter fivePointAutoMoveTime = IntegerParameter.get("Auto/fivepoint_drive_time");
 
     private static void fivePointAuto(long timeSinceStart) {
-        if (timeSinceStart <= fivePointAutoMoveTime) {
-            DriveTrain.instance.setRightSidePower(-1.0);
-            DriveTrain.instance.setLeftSidePower(1.0);
-        } else if (timeSinceStart > fivePointAutoMoveTime) {
+        SmartDashboard.putString("mode", "fivepoint");
+        if (timeSinceStart <= fivePointAutoMoveTime.getValue()) {
+            DriveTrain.instance.setRightSidePower(1.0);
+            DriveTrain.instance.setLeftSidePower(-1.0);
+        } else {
             DriveTrain.instance.setRightSidePower(0.0);
             DriveTrain.instance.setLeftSidePower(0.0);
         }
