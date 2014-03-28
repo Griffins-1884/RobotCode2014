@@ -78,6 +78,10 @@ public class DriveTrain extends Subsystem {
             setShifterState(SHIFTER_SHIFT_OFF);
         }
     }
+    public void disable() {
+        this.setLeftSidePower(0.0);
+        this.setRightSidePower(0.0);
+    }
     public void parameterRefresh() {
     }
 }

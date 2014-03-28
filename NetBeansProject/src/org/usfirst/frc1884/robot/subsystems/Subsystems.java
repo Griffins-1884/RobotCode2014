@@ -26,6 +26,12 @@ public class Subsystems {
             }
         }
     }
+    public static void disableAllSubsystems() {
+        for(int i = 0; i < subsystems.size(); i++) {
+            Subsystem s = (Subsystem) subsystems.elementAt(i);
+            s.disable();
+        }
+    }
     
     // Keep this at the bottom
     static {
