@@ -1,6 +1,8 @@
 package org.usfirst.frc1884.robot;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc1884.robot.commands.FireAndReload;
+import org.usfirst.frc1884.robot.commands.OuttakeFeeder;
 import org.usfirst.frc1884.robot.subsystems.DriveTrain;
 import org.usfirst.frc1884.robot.subsystems.Shooter;
 
@@ -37,33 +39,37 @@ public class AutonomousController {
         }
     }
 
-    private static long lowGoalAutoMoveTime = 10000;
+    private static long lowGoalAutoMoveTime = 5000;
     private static boolean lowGoalAutoHasShot = false;
 
     private static void lowGoalAuto(long timeSinceStart) {
         if (timeSinceStart <= lowGoalAutoMoveTime) {
             DriveTrain.instance.setRightSidePower(1.0);
-            DriveTrain.instance.setLeftSidePower(1.0);
+            DriveTrain.instance.setLeftSidePower(-1.0);
         } else if (timeSinceStart > lowGoalAutoMoveTime && !lowGoalAutoHasShot) {
             DriveTrain.instance.setRightSidePower(0.0);
             DriveTrain.instance.setLeftSidePower(0.0);
-            //Setup ball release
+            
+            // Start ball outtake
             lowGoalAutoHasShot = true;
+            OuttakeFeeder.instance.start();
         }
     }
 
-    private static long highGoalAutoMoveTime = 7000;
+    private static long highGoalAutoMoveTime = 5000;
     private static boolean highGoalAutoHasShot = false;
 
     private static void highGoalAuto(long timeSinceStart) {
         if (timeSinceStart <= highGoalAutoMoveTime) {
-            DriveTrain.instance.setRightSidePower(1.0);
+            DriveTrain.instance.setRightSidePower(-1.0);
             DriveTrain.instance.setLeftSidePower(1.0);
         } else if (timeSinceStart > highGoalAutoMoveTime && !highGoalAutoHasShot) {
             DriveTrain.instance.setRightSidePower(0.0);
             DriveTrain.instance.setLeftSidePower(0.0);
-            Shooter.instance.setGoalPoint(Shooter.instance.getGoalPoint() - 360.0);
+            
+            // Shoot ball
             highGoalAutoHasShot = true;
+            FireAndReload.instance.start();
         }
     }
 
@@ -71,7 +77,7 @@ public class AutonomousController {
 
     private static void fivePointAuto(long timeSinceStart) {
         if (timeSinceStart <= fivePointAutoMoveTime) {
-            DriveTrain.instance.setRightSidePower(1.0);
+            DriveTrain.instance.setRightSidePower(-1.0);
             DriveTrain.instance.setLeftSidePower(1.0);
         } else if (timeSinceStart > fivePointAutoMoveTime) {
             DriveTrain.instance.setRightSidePower(0.0);
