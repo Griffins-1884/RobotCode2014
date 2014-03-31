@@ -3,6 +3,9 @@ package org.usfirst.frc1884.robot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc1884.robot.commands.DriveCommand;
+import org.usfirst.frc1884.robot.commands.ExtendFeeder;
+import org.usfirst.frc1884.robot.commands.FireAndReloadWithLimitSwitch;
+import org.usfirst.frc1884.robot.commands.IntakeFeeder;
 import org.usfirst.frc1884.robot.commands.OuttakeFeeder;
 import org.usfirst.frc1884.robot.subsystems.DriveTrain;
 import org.usfirst.frc1884.robot.subsystems.Shooter;
@@ -69,18 +72,28 @@ public class AutonomousController {
         }
     }
     
+    private static void pause (long time) {
+        long previous = System.currentTimeMillis();
+        while (System.currentTimeMillis() - previous < time) { }
+    }
+    
     private static IntegerParameter highGoalAutoMoveTime = IntegerParameter.get("Auto/highgoal_drive_time");
     private static boolean highGoalAutoHasShot = false;
 
     private static void highGoalAuto(long timeSinceStart) {
         SmartDashboard.putString("mode", "highgoal");
         if (timeSinceStart <= highGoalAutoMoveTime.getValue()) {
-            DriveCommand.drivePolar(-1.0, 0.0);
+            DriveCommand.drivePolar(-0.5, -0.1);
         } else if(!highGoalAutoHasShot) {
             DriveCommand.drivePolar(0.0, 0.0);
+            IntakeFeeder.instance.start();
+            ExtendFeeder.instance.start();
+            pause(100);
+            IntakeFeeder.instance.finish();
             
             // Shoot ball
             highGoalAutoHasShot = true;
+            FireAndReloadWithLimitSwitch.instance.start();
 //            FireAndReload.instance.start();
         }
     }
