@@ -45,5 +45,11 @@ public class SteerController {
         OI.setBooleanValue(OI.KEEP_DRIVE_REVERSED, driverController.getLeftUpperTrigger());
         
         OI.setBooleanValue(OI.LOW_GEAR, driverController.getLeftLowerTrigger());
+        
+        OI.setBooleanValue(OI.SHOOTER_FIRE_BACKWARD, driverController.getLeftLowerTrigger());
+        
+        OI.setBooleanValue(OI.SHOOTER_FIRE_FORWARD, driverController.getLeftLowerTrigger());
+        
+        OI.setBooleanValue(OI.SHOOTER_ENABLE_DISABLE_LIMIT_SWITCH, driverController.getLeftLowerTrigger());
     }
 }

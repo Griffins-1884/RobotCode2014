@@ -9,6 +9,7 @@ import org.usfirst.frc1884.robot.commands.IntakeFeeder;
 import org.usfirst.frc1884.robot.commands.OuttakeFeeder;
 import org.usfirst.frc1884.robot.commands.RetractFeeder;
 import org.usfirst.frc1884.robot.commands.DriveCommand;
+import org.usfirst.frc1884.robot.commands.ShooterOverride;
 import org.usfirst.frc1884.robot.oi.OI;
 import org.usfirst.frc1884.robot.subsystems.Shooter;
 
@@ -29,9 +30,27 @@ public class TeleopController {
             DriveShiftHigh.instance.start();
         }
         
+        if(OI.whenPressed(OI.SHOOTER_ENABLE_DISABLE_LIMIT_SWITCH)) {
+            if(ShooterOverride.isLimitSwitchEnabled()) {
+                ShooterOverride.disableLimitSwitch();
+            } else {
+                ShooterOverride.enableLimitSwitch();
+            }
+        }
+        
+        if(ShooterOverride.isLimitSwitchEnabled()) {
         if(OI.whenPressed(OI.SHOOTER_FIRE)) {
             if(FireAndReloadWithLimitSwitch.instance.state == Command.NOT_RUNNING) {
                 FireAndReloadWithLimitSwitch.instance.start();
+            }
+        }
+        } else {
+            if(OI.whileHeld(OI.SHOOTER_FIRE_FORWARD)) {
+                ShooterOverride.setMotorValue(1.0);
+            } else if(OI.whileHeld(OI.SHOOTER_FIRE_BACKWARD)) {
+                ShooterOverride.setMotorValue(-1.0);
+            } else {
+                ShooterOverride.setMotorValue(0.0);
             }
         }
         

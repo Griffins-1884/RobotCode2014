@@ -11,7 +11,10 @@ public class OI {
                             SWITCH_GEAR = 7,
                             FLIP_DRIVE = 8,
                             LOW_GEAR = 9,
-                            KEEP_DRIVE_REVERSED = 10;
+                            KEEP_DRIVE_REVERSED = 10,
+                            SHOOTER_FIRE_FORWARD = 11,
+                            SHOOTER_FIRE_BACKWARD = 12,
+                            SHOOTER_ENABLE_DISABLE_LIMIT_SWITCH = 13;
     
     public static void poll() {
         SteerController.poll();
