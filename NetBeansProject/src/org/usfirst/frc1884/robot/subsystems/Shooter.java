@@ -22,10 +22,24 @@ public class Shooter extends Subsystem {
         chooChooMotor = new Talon(1, 5);
         chooChooEncoder = new Encoder(1, 7, 1, 8);
         chooChooEncoder.setDistancePerPulse(360.0/250.0);
+        chooChooEncoder.setReverseDirection(true);
         chooChooEncoder.start();
+        enablePID();
+    }
+    
+    public void disablePID() {
+        chooChooPIDController.disable();
+        setMotorPower(0.0);
+    }
+
+    public void enablePID() {
         chooChooPIDController = new PIDEncoderTalonController(0.1, 0.0, 0.2, chooChooEncoder, chooChooMotor);
         chooChooPIDController.setAbsoluteTolerance(0.2);
         chooChooPIDController.setSetpoint(goalPoint);
+    }
+    
+    public boolean isPIDEnabled() {
+        return chooChooPIDController.isEnable();
     }
     
     public double getGoalPoint() {

@@ -29,10 +29,10 @@ public class SteerController {
                                              operatorController.getTriggerButton());
         
         OI.setBooleanValue(OI.FEEDER_INTAKE, //driverController.getActionLeft() ||
-                                             operatorController.getThumbMiddleLeftButton());
+                                             operatorController.getThumbMiddleRightButton());
         
         OI.setBooleanValue(OI.FEEDER_OUTTAKE, //driverController.getActionRight() ||
-                                              operatorController.getThumbMiddleRightButton());
+                                              operatorController.getThumbMiddleLeftButton());
         
         OI.setBooleanValue(OI.SHOOTER_FIRE, driverController.getRightUpperTrigger()
                                             //|| operatorController.getTriggerButton()
@@ -45,5 +45,11 @@ public class SteerController {
         OI.setBooleanValue(OI.KEEP_DRIVE_REVERSED, driverController.getLeftUpperTrigger());
         
         OI.setBooleanValue(OI.LOW_GEAR, driverController.getLeftLowerTrigger());
+        
+        OI.setBooleanValue(OI.SHOOTER_MOVE_FORWARD, driverController.getLeftLowerTrigger());
+        
+        OI.setBooleanValue(OI.SHOOTER_MOVE_BACKWARDS, driverController.getRightLowerTrigger());
+        
+        OI.setBooleanValue(OI.SHOOTER_DISABLE_ENABLE_PID, driverController.getActionRight());
     }
 }
