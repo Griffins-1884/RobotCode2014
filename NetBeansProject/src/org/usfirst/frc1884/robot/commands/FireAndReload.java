@@ -12,8 +12,6 @@ public class FireAndReload extends Command {
         Shooter.instance.setGoalPoint(Shooter.instance.getGoalPoint() - 360.0);
     }
     void internalRun() {
-        System.out.println("Encoder: " + Shooter.instance.getEncoderValue());
-        System.out.println("Goal Point" + Shooter.instance.getGoalPoint());
         if(Shooter.instance.isAtTarget()) {
             state = FINISHING;
         }
