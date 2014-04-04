@@ -22,10 +22,10 @@ public class DriveTrain extends Subsystem {
     private Compressor compressor;
     
     private DriveTrain() {
-        leftMotor1 = new Talon(1, 1);
-        leftMotor2 = new Talon(1, 2);
-        rightMotor1 = new Talon(1, 3);
-        rightMotor2 = new Talon(1, 4);
+        leftMotor1 = new Talon(1, 3);
+        leftMotor2 = new Talon(1, 4);
+        rightMotor1 = new Talon(1, 1);
+        rightMotor2 = new Talon(1, 2);
         
         shiftingPiston = new DoubleSolenoid(1, 1, 2);
         
