@@ -1,5 +1,6 @@
 package org.usfirst.frc1884.robot;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc1884.robot.commands.Command;
 import org.usfirst.frc1884.robot.commands.DriveShiftHigh;
 import org.usfirst.frc1884.robot.commands.DriveShiftLow;
@@ -20,6 +21,12 @@ public class TeleopController {
 //        Shooter.instance.resetEncoder();
     }
     public static void periodic() {
+        
+        //Send values to SmartDashboard
+        
+        SmartDashboard.putNumber("Choo Choo Power", Shooter.instance.getMotorPower());
+        SmartDashboard.putBoolean("Limit Switch Enabled", ShooterOverride.isLimitSwitchEnabled());
+        
         //Run Commands
         
         DriveCommand.drivePolar(OI.getAnalogValue(OI.DRIVE_FORWARD), OI.getAnalogValue(OI.DRIVE_COUNTERCLOCKWISE));

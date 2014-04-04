@@ -40,6 +40,11 @@ public class Shooter extends Subsystem {
     public void setMotorPower(double value) {
         chooChooMotor.set(value);
     }
+    
+    public double getMotorPower() {
+        return chooChooMotor.get();
+    }
+    
     public double getEncoderValue() {
         return chooChooEncoder.getDistance();
     }
