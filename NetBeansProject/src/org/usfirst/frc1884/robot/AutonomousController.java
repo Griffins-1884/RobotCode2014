@@ -60,13 +60,14 @@ public class AutonomousController {
     private static boolean lowGoalAutoHasShot = false;
 
     private static void lowGoalAuto(long timeSinceStart) {
-        SmartDashboard.putString("mode", "lowgoal");
         if (timeSinceStart <= lowGoalAutoMoveTime.getValue()) {
-            DriveCommand.drivePolar(1.0, 0.0);
+            DriveCommand.drivePolar(0.7, 0.0);
         } else if(!lowGoalAutoHasShot) {
             DriveCommand.drivePolar(0.0, 0.0);
-            
             // Start ball outtake
+            OuttakeFeeder.instance.start();
+            pause(1000);
+            OuttakeFeeder.instance.finish();
             lowGoalAutoHasShot = true;
             OuttakeFeeder.instance.start();
         }
@@ -81,29 +82,25 @@ public class AutonomousController {
     private static boolean highGoalAutoHasShot = false;
 
     private static void highGoalAuto(long timeSinceStart) {
-        SmartDashboard.putString("mode", "highgoal");
         if (timeSinceStart <= highGoalAutoMoveTime.getValue()) {
-            DriveCommand.drivePolar(-0.5, -0.1);
+            DriveCommand.drivePolar(-0.7, 0.0);
         } else if(!highGoalAutoHasShot) {
             DriveCommand.drivePolar(0.0, 0.0);
-            IntakeFeeder.instance.start();
+            //Extend Feeder and Shoot Ball
             ExtendFeeder.instance.start();
-            pause(100);
+            IntakeFeeder.instance.start();
+            pause(300);
             IntakeFeeder.instance.finish();
-            
-            // Shoot ball
             highGoalAutoHasShot = true;
             FireAndReloadWithLimitSwitch.instance.start();
-//            FireAndReload.instance.start();
         }
     }
 
     private static IntegerParameter fivePointAutoMoveTime = IntegerParameter.get("Auto/fivepoint_drive_time");
 
     private static void fivePointAuto(long timeSinceStart) {
-        SmartDashboard.putString("mode", "fivepoint");
         if (timeSinceStart <= fivePointAutoMoveTime.getValue()) {
-            DriveCommand.drivePolar(1.0, 0.0);
+            DriveCommand.drivePolar(0.7, 0.0);
         } else {
             DriveCommand.drivePolar(0.0, 0.0);
         }
