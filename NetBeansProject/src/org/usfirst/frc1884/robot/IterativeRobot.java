@@ -19,11 +19,13 @@ public class IterativeRobot extends edu.wpi.first.wpilibj.IterativeRobot {
     public void autonomousInit() {
         AutonomousController.init();
     }
+    
     public void autonomousPeriodic() {
         AutonomousController.periodic();
         Commands.executeAllCommands();
         Subsystems.subsystemAlwaysRuns();
     }
+    
     public void teleopInit() {
         TeleopController.init();
     }

@@ -22,7 +22,7 @@ public class Intake extends Subsystem {
     private Intake() {
         intakeMotor = new Talon(1, 6);
         
-        extendingPiston = new DoubleSolenoid(1, 3, 4);
+        extendingPiston = new DoubleSolenoid(1, 4, 3);
     }
     
     public double getIntakePower() {

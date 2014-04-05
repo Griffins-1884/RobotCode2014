@@ -10,8 +10,9 @@ import org.usfirst.frc1884.robot.commands.IntakeFeeder;
 import org.usfirst.frc1884.robot.commands.OuttakeFeeder;
 import org.usfirst.frc1884.robot.commands.RetractFeeder;
 import org.usfirst.frc1884.robot.commands.DriveCommand;
-import org.usfirst.frc1884.robot.commands.ShooterOverride;
 import org.usfirst.frc1884.robot.oi.OI;
+import org.usfirst.frc1884.robot.subsystems.DriveTrain;
+import org.usfirst.frc1884.robot.subsystems.Intake;
 import org.usfirst.frc1884.robot.subsystems.Shooter;
 
 public class TeleopController {
@@ -20,19 +21,21 @@ public class TeleopController {
     }
 
     public static void init() {
-//        Shooter.instance.resetEncoder();
+        //DriveShiftHigh.instance.start();
     }
 
     public static void periodic() {
 
         //Send values to SmartDashboard
         
-        SmartDashboard.putNumber("Choo Choo Power", Shooter.instance.getMotorPower());
-        //SmartDashboard.putBoolean("Limit Switch Enabled", ShooterOverride.isLimitSwitchEnabled());
+        SmartDashboard.putNumber("Left Power", DriveTrain.instance.getLeftSidePower());
+        SmartDashboard.putNumber("Right Power", DriveTrain.instance.getRightSidePower());
+        SmartDashboard.putNumber("Feeder Power", Intake.instance.getIntakePower());
+        SmartDashboard.putNumber("Shooter Power", Shooter.instance.getMotorPower());
 
         //Run Commands
-        DriveCommand.drivePolar(OI.getAnalogValue(OI.DRIVE_FORWARD), OI.getAnalogValue(OI.DRIVE_COUNTERCLOCKWISE));
         
+        DriveCommand.drivePolar(OI.getAnalogValue(OI.DRIVE_FORWARD), OI.getAnalogValue(OI.DRIVE_COUNTERCLOCKWISE));
 
         if (OI.whenPressed(OI.LOW_GEAR)) {
             DriveShiftLow.instance.start();
@@ -40,29 +43,11 @@ public class TeleopController {
             DriveShiftHigh.instance.start();
         }
 
-        if (OI.whenPressed(OI.SHOOTER_ENABLE_DISABLE_LIMIT_SWITCH)) {
-            if (ShooterOverride.isLimitSwitchEnabled()) {
-                ShooterOverride.disableLimitSwitch();
-            } else {
-                ShooterOverride.enableLimitSwitch();
+        if (OI.whenPressed(OI.SHOOTER_FIRE)) {
+            if (FireAndReloadWithLimitSwitch.instance.state == Command.NOT_RUNNING) {
+                FireAndReloadWithLimitSwitch.instance.start();
             }
         }
-
-       // if (ShooterOverride.isLimitSwitchEnabled()) {
-            if (OI.whenPressed(OI.SHOOTER_FIRE)) {
-                if (FireAndReloadWithLimitSwitch.instance.state == Command.NOT_RUNNING) {
-                    FireAndReloadWithLimitSwitch.instance.start();
-                }
-            }
-        //} else {
-        /*    if (OI.whileHeld(OI.SHOOTER_FIRE_FORWARD)) {
-                ShooterOverride.setMotorValue(1.0);
-            } else if (OI.whileHeld(OI.SHOOTER_FIRE_BACKWARD)) {
-                ShooterOverride.setMotorValue(-1.0);
-            } else {
-                ShooterOverride.setMotorValue(0.0);
-            }*/
-        //}
 
         if (OI.whenPressed(OI.FEEDER_INTAKE)) {
             IntakeFeeder.instance.start();
@@ -78,6 +63,12 @@ public class TeleopController {
             ExtendFeeder.instance.start();
         } else if (OI.whenReleased(OI.FEEDER_EXTEND)) {
             RetractFeeder.instance.start();
+        }
+        
+        if(Math.abs(DriveTrain.instance.getLeftSidePower())+Math.abs(DriveTrain.instance.getRightSidePower()) > 1 || (Math.abs(Intake.instance.getIntakePower()) > 0.5)) {
+            DriveTrain.instance.stopCompressor();
+        } else {
+            DriveTrain.instance.startCompressor();
         }
 
     }

@@ -11,11 +11,5 @@ public class DriveCommand {
     public static void driveTank(double leftValue, double rightValue) {
         DriveTrain.instance.setLeftSidePower(Math.max(Math.min(leftValue, 1.0), -1.0));
         DriveTrain.instance.setRightSidePower(Math.max(Math.min(rightValue, 1.0), -1.0));
-        
-        if(Math.abs(leftValue) + Math.abs(rightValue) > 1) {
-            DriveTrain.instance.stopCompressor();
-        } else {
-            DriveTrain.instance.startCompressor();
-        }
     }
 }
